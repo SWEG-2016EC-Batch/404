@@ -36,5 +36,5 @@
     8.12. Go to step 8.
 9. Stop the program.
 
-## flow chart
+## Flow chart
 ![BMI Flowchart](BMI_FLOWCHART.png)
