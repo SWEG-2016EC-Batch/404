@@ -1,4 +1,4 @@
-# System Design for BMI Calculator
+# System Design for total number of miles
 
 ## Input
 1. **Fuel capacity**: float data type
