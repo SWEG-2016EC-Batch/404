@@ -24,4 +24,4 @@
 11. Stop the program.
 
 ## Flow chart
-![BMI Flowchart](BMI_FLOWCHART.png)
+![Flowchart](Flowchart.png)
