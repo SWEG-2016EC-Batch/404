@@ -12,12 +12,14 @@
 3. **Bonus Payment**
 
 ## Operation
+## Operation
+
 1. **Multiplication**:
-    1.**pension_deduction = 0.05 * base salary**
-    2.**bonus_per_month = bonus_rate_per_hour * (weekly_working_hours * 4)**
-    3.**gross_salary  = base_salary + bonus_per_month**
-    4.**tax_deduction = gross_salary* 0.15**
-    5.**net_salary = gross_salary - tax_deduction - pension_deduction**
+    1. **pension_deduction = 0.05 * base_salary**
+    2. **bonus_per_month = bonus_rate_per_hour * (weekly_working_hours * 4)**
+    3. **gross_salary = base_salary + bonus_per_month**
+    4. **tax_deduction = gross_salary * 0.15**
+    5. **net_salary = gross_salary - tax_deduction - pension_deduction**
 
 ## Pseudo Code
 1. Start the program.
