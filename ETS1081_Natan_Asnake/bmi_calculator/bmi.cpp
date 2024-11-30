@@ -23,7 +23,7 @@ int main() {
     }
     BMI=weight/(height*height);
 
-    cout<<"Your BMI is "<<" "<<BMI<<"."<<endl;
+    cout<<"Your BMI is "<<BMI<<"."<<endl;
     if(BMI<18.5) {
         cout<<"You are underweight!"<<endl;
           cout<<'\n';
