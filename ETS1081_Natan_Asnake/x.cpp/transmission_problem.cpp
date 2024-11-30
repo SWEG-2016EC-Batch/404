@@ -3,7 +3,7 @@ using namespace std;
 int main() {
    double file_size,seconds,s1,m1,m2,h1,h2,d1;
    int character_per_second=960;
-   cout<<"This program calculates how long it takes to transfer files"<<endl;
+   cout<<"This program calculates how long it takes to transfer files at a speed of 960 bytes per second."<<endl;
    while(true) {
        cout<<"please enter your file size in bytes: "<<endl;
        cin>>file_size;
