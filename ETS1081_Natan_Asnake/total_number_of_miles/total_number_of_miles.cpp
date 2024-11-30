@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 int main() {
-    float gallons,miles_per_gallon,miles,cont;
+    float gallons,miles_per_gallon,miles;
     cout<<"This program calculates the amount of miles your car can go without needing a refeuling."<<endl;
     while(true) {
         cout<<"Please enter the maximum number of gallons your fuel tank is capable of holding: "<<endl;
@@ -31,6 +31,7 @@ int main() {
         cout<<"Your car can travel "<<miles<<" "<<"miles without refueling."<<endl;
         cout<<'\n';
       cout<<"Thank you for using this calculator."<<endl;
-         
 
+
+return 0;
 }
