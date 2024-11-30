@@ -3,6 +3,7 @@ using namespace std;
 int main() {
    float bonus_rate,base_salary,gross_salary,weekly_hours,pension,monthly_bonus,net_salary,tax;
    string name;
+   cout<<"This program calculates your gross & net salary and your monthly bonus."<<endl;
    cout<<"Please enter your full name: "<<endl;
    getline(cin,name);
   while(true){
