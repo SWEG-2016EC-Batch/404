@@ -27,9 +27,9 @@ int main() {
         BMI = weight / (height * height);
         cout << "-------------------------" << endl;
         cout << "BMI of person " << i <<" is " << BMI << endl;
-        if (BMI <= 18)
+        if (BMI <= 18.5)
             cout << "person "<< i <<" is UNDERWEIGHT." << endl;
-        else if (BMI <= 23)
+        else if (BMI <= 25)
             cout << "person " << i << " is NORMAL WEIGHT." << endl;
         else
             cout << "person "<< i <<" is OVERWEIGHT." << endl;
