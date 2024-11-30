@@ -11,7 +11,11 @@ int main() {
         cin.clear();
         cin.ignore();
         continue;
+    }else{
+        break;
+        }
     }
+    while(true) {
         cout<<"Please enter how many miles your car can travel with each gallon:  "<<endl;
         cin>>miles_per_gallon;
    if(cin.fail() || miles_per_gallon<0) {
@@ -19,20 +23,14 @@ int main() {
         cin.clear();
         cin.ignore();
         continue;
+    }else{
+        break;
+        }
     }
     miles=gallons*miles_per_gallon;
         cout<<"Your car can travel "<<miles<<" "<<"miles without refueling."<<endl;
         cout<<'\n';
-      
-        cout<<"If you want to terminate the calculator enter 0 and if you want to continue enter any other digit except 0: "<<endl;
-        cin>>cont;
-    if(cin.fail()){ 
-            cin.clear();
-            cin.ignore();
-            continue;}
-    else if( cont==0) {
-          cout<<"Thank you for using this calculator."<<endl;
-          break;}
-}
-return 0;
+      cout<<"Thank you for using this calculator."<<endl;
+         
+
 }
