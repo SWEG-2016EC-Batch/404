@@ -11,12 +11,24 @@ int main() {
     
     cout << "What is your weekly working hour: ";
     cin >> weekly_working_hour;
+    if(cin.fail()){
+        cout << "ERROR! invalid input.";
+        return 0;
+    }
     
     cout << "What is your bonus rate per hour: ";
     cin >> bonus_rate;
+    if(cin.fail()){
+        cout << "ERROR! invalid input.";
+        return 0;
+    }
     
     cout << "What is your base salary: ";
     cin >> base_salary;
+    if(cin.fail()){
+        cout << "ERROR! invalid input.";
+        return 0;
+    }
     
     float bonus = bonus_rate * weekly_working_hour;
     float gross_salary = base_salary + bonus;
