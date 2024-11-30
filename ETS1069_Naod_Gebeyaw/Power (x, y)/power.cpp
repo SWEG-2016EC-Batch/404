@@ -2,11 +2,19 @@
 using namespace std;
 
 int main() {
-    float x, y, value = 1;
+    int x, y, value = 1;
     cout << "Enter the base: ";
     cin >> x;
+    if(cin.fail()){
+        cout << "ERROR! invalid input.";
+        return 0;
+    }
     cout << "Enter the exponent: ";
     cin >> y;
+    if(cin.fail()){
+        cout << "ERROR! invalid input.";
+        return 0;
+    }
     for(int i = 1; i <= y; i++){
         value *= x;
     }
