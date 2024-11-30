@@ -39,7 +39,11 @@ int main() {
     }
         cout<<"If you want to terminate the calculator enter 0 and if you want to continue enter any other digit except 0."<<endl;
         cin>>cont;
-        if(cont==0) {
+        if(cin.fail()){ 
+            cin.clear();
+            cin.ignore();
+            continue;}
+        else if( cont==0) {
           cout<<"Thank you for using my BMI calculator."<<endl;
           break;}
 }
