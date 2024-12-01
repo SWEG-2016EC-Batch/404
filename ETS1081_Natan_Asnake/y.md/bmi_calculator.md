@@ -61,6 +61,6 @@
 **Step 14:** End the program
 
 
-## Step 38: End the program
+
 # Flow chart
 ![Flowchart](bmi_flowchart.png)
