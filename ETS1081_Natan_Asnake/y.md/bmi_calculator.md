@@ -90,3 +90,5 @@
 - **Step 37:** Break from the loop
 
 ## Step 38: End the program
+## Flow chart
+![Flowchart](bmi12.drawio.png)
