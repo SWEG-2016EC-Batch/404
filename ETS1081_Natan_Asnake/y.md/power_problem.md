@@ -9,7 +9,7 @@
 ## Output
 - Displays the calculated power value.
 
-## Pseudo Code
+# Pseudo Code
 
 
 **Step 1:** Start the program.
