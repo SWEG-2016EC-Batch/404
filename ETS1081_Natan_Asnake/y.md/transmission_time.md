@@ -1,8 +1,11 @@
 # System Design
 1. Input:
-   • Accepts the file size in bytes from the user.
+   -Accepts the file size in bytes from the user.
+   -validates the input and allows the user to re-enter if an invalid input was chosen.
+
 2. Calculation:
  • Calculates the time required for file transfer by dividing the given bytes by 960 and converts to the appropriate seconds, minutes, hours,or days.
+
 3. Output Component:
   • Displays the calculated time in a user-friendly format.
 # Pseudo code
