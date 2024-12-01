@@ -91,4 +91,4 @@
 
 ## Step 38: End the program
 # Flow chart
-![Flowchart](BMIFc.png)
+![Flowchart](bmi flowchart.png)
