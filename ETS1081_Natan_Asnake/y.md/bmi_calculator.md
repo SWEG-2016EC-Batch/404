@@ -17,7 +17,7 @@
 ## 4. Loop Control
 - Offers the user an option to continue or terminate the program after each calculation.
 
-# BMI Calculator Pseudocode
+# Pseudocode
 
 ## Start
 
