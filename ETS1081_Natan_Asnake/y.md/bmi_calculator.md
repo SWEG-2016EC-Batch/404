@@ -1,7 +1,7 @@
 
 # BMI Calculator System Design
 
-## 1. Input Handling
+## 1. Input 
 - Accepts user input for height and weight.
 - Validates inputs to ensure they are positive numbers.
 
@@ -14,7 +14,7 @@
 - Displays the calculated BMI.
 - Provides feedback on weight category based on BMI value.
 
-## 4. Loop Control
+## 4. Looping
 - Offers the user an option to continue or terminate the program after each calculation.
 
 # Pseudocode
