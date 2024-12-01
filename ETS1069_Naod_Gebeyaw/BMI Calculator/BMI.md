@@ -22,7 +22,7 @@
 5. Take the number of persons input and store it in the `trial` variable.
 6. Validate the input; if it is invalid, terminate the program, otherwise go to the next step.
 7. Initialize `i` to 1.
-8. Check if `i` is less than or equals to `trial`; if true, proceed to step 8.1, otherwise go to step 9.
+8. Check if `i` is less than or equals to `trial`; if true, proceed to step 8.1, otherwise go to step 9.   
     8.1. Prompt the user to enter their weight (kg) and store it in the `weight` variable.   
     8.2. check if the the weight is valid and check if its positive number.    
     8.3. Prompt the user to enter their height (m) and store it in the `height` variable.    
