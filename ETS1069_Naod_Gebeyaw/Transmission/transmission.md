@@ -14,7 +14,7 @@
 ## Pseudo Code
 1. Start the program.
 2. Declare and initialize a constant variable called `transmission_rate` (set to 960 bits per second).
-3. Declare and initialize a variable `file_size` (set to 419430400 bytes).
+3. Declare a variable `file_size` .
 4. Calculate the total transmission time in seconds as `total_second = file_size / transmission_rate`.
 5. Calculate the number of days by dividing `total_second` by `(24 * 3600)` (seconds in a day).
 6. Update `total_second` to the remaining seconds after calculating days.
