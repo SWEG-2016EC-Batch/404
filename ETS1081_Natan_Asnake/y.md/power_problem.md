@@ -10,26 +10,26 @@
 - Displays the calculated power value.
 
 ## Pseudo Code
-Step 1: Initialize result to 1.
 
-Step 2: Get base input from the user.
 
-Step 3: Get exponent input from the user.
+**Step 1:** Start the program.
 
-Step 4: Check if exponent is less than 0:
+**Step 2:** Initialize result to 1.
 
-• If true:
+**Step 3:** Get base input from the user.
 
-  • Step 4.1: For i from 1 to -exponent:
+**Step 4:** Get exponent input from the user.
 
-    • Step 4.1.1: Multiply result by base.
+**Step 5:** Check if exponent is less than 0:
+- If true:
+  - **Step 5.1:** For i from 1 to -exponent:
+    - **Step 5.1.1:** Multiply result by base.
+  - **Step 5.2:** Set result to 1 / result.
 
-  • Step 4.2: Set result to 1 / result.
-  
-Step 5: Else (if exponent is greater than or equal to 0):
+**Step 6:** Else (if exponent is greater than or equal to 0):
+- **Step 6.1:** For i from 1 to exponent:
+  - **Step 6.1.1:** Multiply result by base.
 
-• Step 5.1: For i from 1 to exponent:
+**Step 7:** Print "base raised to the power of exponent is result."
 
-  • Step 5.1.1: Multiply result by base.
-
-Step 6: Print "base raised to the power of exponent is result.
+**Step 8:** End the program.
