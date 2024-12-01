@@ -8,8 +8,7 @@
 ## 2. BMI Calculation
 - Computes BMI using the formula: 
   [
-  \text{BMI} = \frac{\text{weight}}{\text{height}^2}
-  ]
+  \BMI=weight/height*height]
 
 ## 3. Output
 - Displays the calculated BMI.
@@ -18,6 +17,5 @@
 ## 4. Loop Control
 - Offers the user an option to continue or terminate the program after each calculation.
 
-## User Interface
-- Console-based interaction with prompts and outputs printed in the terminal.
+
 
