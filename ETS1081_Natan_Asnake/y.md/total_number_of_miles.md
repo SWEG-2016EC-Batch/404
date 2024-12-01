@@ -29,4 +29,4 @@ Calculate the maximum amount of miles the car can travel without refueling by mu
 
 
 # Flow chart
-![Flowchart](total_number_of_miles.png)
+![Flowchart](Total_number_of_miles.png)
