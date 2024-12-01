@@ -63,4 +63,4 @@
 
 
 # Flow chart
-![Flowchart](bmi_flowchart.png)
+![Flowchart](1.png)
