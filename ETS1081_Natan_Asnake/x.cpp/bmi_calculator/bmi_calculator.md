@@ -1,32 +1,67 @@
-# Algorithm design
-## Input
 
--maximum number of gallons the car is capable of holding
 
--how many miles the car can travel with each gallon.
 
--validates input so that the inputs entered are greater or equal to 0.
-## Calculation
 
-Calculate the maximum amount of miles the car can travel without refueling by multiplying the two inputs.
+# BMI Calculator System Design
+
+## Input 
+- Accepts user input for height and weight.
+- Validates inputs to ensure they are positive numbers.
+
+## BMI Calculation
+- Computes BMI using the formula: 
+  [
+  BMI=weight/(height*height)]
+
 ## Output
+- Displays the calculated BMI.
+- Provides feedback on weight category based on BMI value.
 
--display the calculated miles.
-# Pseudo code
-1. Declare variables gallons, miles_per_gallon, and miles as float.  
+## Loop 
+- Offers the user an option to continue or terminate the program after each calculation.
 
-2. Prompt user to enter the number of gallons.  
 
-3. Read input and store it in gallons.  
 
-4. Prompt user to enter the miles per gallon.  
 
-5. Read input and store it in miles_per_gallon.  
+# BMI Calculator Pseudocode
 
-6. Set miles = gallons * miles_per_gallon.  
+## Start the program
 
-7. Print "Your car can travel miles miles without refueling."
+**Step 1:** declare BMI,weight,height,cont using float data_type.
+
+**Step 2:** Print "This is a Body Mass Index (BMI) calculator"
+
+**Step 3:** Prompt user to input height and Read height in meters into height
+
+**Step 4:** Prompt user to input weight and read weight in kilograms into weight
+
+**Step 5:** Calculate BMI = weight / (height * height)
+
+**Step 6:** Print "Your BMI is " + BMI + "."
+
+**Step 7:** If BMI < 18.5 THEN
+   - Print "You are underweight!"
+   
+**Step 8:** Else if 18.5<= BMI <= 24.9 THEN
+   - Print "You are in a healthy weight range!"
+   
+**Step 9:** Else if 25<= BMI <= 29.9 THEN
+   - Print "You are in overweight range!"
+   
+**Step 10:** Else
+   - Print "You are in obesity state!"
+
+**Step 11:** Print "Do you want to calculate again? (Enter 0 to quit, any other number to continue)"
+
+**Step 12:** Read input for continuation into cont
+
+**Step 13:** If cont == 0 THEN
+   - Print "Thank you for using my BMI calculator."
+   - Break from the loop
+
+## End the program
+
 
 
 # Flow chart
-![Flowchart](2.png)
+![Flowchart](1.png)
