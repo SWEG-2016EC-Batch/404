@@ -27,4 +27,6 @@ Pseudo code
 
 
 flowchart
-[flowchart]
+
+![image](https://github.com/user-attachments/assets/d513c853-0966-428d-9c21-71e59873094a)
+
