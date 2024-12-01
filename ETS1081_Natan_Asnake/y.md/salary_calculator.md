@@ -41,3 +41,6 @@
 19. Display monthly_bonus
 
 ## End the program
+# Flow chart
+
+![Flowchart](salary_calculator.png)
