@@ -41,10 +41,10 @@
 **Step 7:** If BMI < 18.5 THEN
    - Print "You are underweight!"
    
-**Step 8:** Else if BMI <= 24.9 THEN
+**Step 8:** Else if 18.5<= BMI <= 24.9 THEN
    - Print "You are in a healthy weight range!"
    
-**Step 9:** Else if BMI <= 29.9 THEN
+**Step 9:** Else if 25<= BMI <= 29.9 THEN
    - Print "You are in overweight range!"
    
 **Step 10:** Else
