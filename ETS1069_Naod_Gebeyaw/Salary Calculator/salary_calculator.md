@@ -34,7 +34,7 @@
 20. stop the program.
 
 ## Flow chart
-![Flowchart]()
+![Flowchart](salaryCalculator.png)
 
 
    
