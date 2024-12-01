@@ -24,7 +24,7 @@
 
 # BMI Calculator Pseudocode
 
-### Revised Pseudocode (Without Validations)
+
 
 **Step 1:** Start the program
 
