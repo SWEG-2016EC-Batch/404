@@ -18,8 +18,11 @@
 4. if the input fails, print "ERROR! invalid input".
 5. prompt the user to input value of exponent(y) as an int.
 6. if the input fails, print "ERROR! invalid input".
-7. use a `for` loop to multiply x by itself as long as i <= y and store it on the `value` variable.
-8. print the `value`.
+7. Use a loop to calculate `x^y`:
+   7.1 Set `value = 1`.
+   7.2 For each iteration from 1 to `y`, multiply `value` by `x`.
+8. Print the result: "x^y = value".
+9. End the program.
 
 ## Flow chart
 ![Flowchart]()
