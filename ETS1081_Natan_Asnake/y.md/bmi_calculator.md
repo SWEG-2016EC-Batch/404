@@ -44,7 +44,7 @@
 - **Step 8:** Print "Invalid input!"
 - **Step 9:** Clear input stream
 - **Step 10:** Ignore invalid input
-- **Step 11:** Continue to next iteration of the loop
+- **Step 11:** Continue to next iteration of the loop(go to step 5) 
 
 ### Step 12: Print
 - "Please enter your weight in kilograms:"
@@ -55,7 +55,7 @@
 - **Step 15:** Print "Invalid input!"
 - **Step 16:** Clear input stream
 - **Step 17:** Ignore invalid input
-- **Step 18:** Continue to next iteration of the loop
+- **Step 18:** Continue to next iteration of the loop(go to step 5)
 
 ### Step 19: Calculate 
 - BMI = weight / (height * height)
@@ -83,7 +83,7 @@
 ### Step 31: If input fails THEN
 - **Step 32:** Clear input stream
 - **Step 33:** Ignore invalid input
-- **Step 34:** Continue to next iteration of the loop
+- **Step 34:** Continue to next iteration of the loop(go to step 5)
 
 ### Step 35: Else if cont == 0 THEN
 - **Step 36:** Print "Thank you for using my BMI calculator."
