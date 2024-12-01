@@ -37,4 +37,4 @@
 10. Stop the program.
 
 ## Flow chart
-![Flowchart]()
+![Flowchart](bmi.jpeg)
