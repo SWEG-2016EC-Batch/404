@@ -33,3 +33,5 @@
 **Step 7:** Print "base raised to the power of exponent is result."
 
 **Step 8:** End the program.
+#Flow chart
+![Flowchart](power_problem.png)
