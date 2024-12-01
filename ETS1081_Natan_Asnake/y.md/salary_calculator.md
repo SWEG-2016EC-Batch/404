@@ -43,4 +43,4 @@
 ## End the program
 # Flow chart
 
-![Flowchart](salary_calculator.png)
+![Flowchart](4.png)
