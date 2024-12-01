@@ -30,9 +30,9 @@
 
 **Step 2:** Print "This is a Body Mass Index (BMI) calculator"
 
-**Step 3:** Read height in meters into height
+**Step 3:** Prompt user to input height and Read height in meters into height
 
-**Step 4:** Read weight in kilograms into weight
+**Step 4:** Prompt user to input weight and read weight in kilograms into weight
 
 **Step 5:** Calculate BMI = weight / (height * height)
 
