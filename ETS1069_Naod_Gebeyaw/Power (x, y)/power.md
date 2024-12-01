@@ -25,4 +25,4 @@
 9. End the program.
 
 ## Flow chart
-![Flowchart]()
+![Flowchart](power.png)
