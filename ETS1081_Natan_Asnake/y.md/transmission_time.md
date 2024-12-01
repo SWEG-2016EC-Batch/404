@@ -43,3 +43,5 @@
   - Print d1 "days and" h2 "hours"
 
 ### End Program
+# Flow Chart
+![Flowchart](transmission_time.png)
