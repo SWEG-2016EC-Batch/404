@@ -22,5 +22,5 @@
 9. End the program.
 
 ## Flow Chart
-![Flowchart]()
+![Flowchart](totalMile.png)
 
