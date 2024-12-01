@@ -24,9 +24,9 @@
 
 # BMI Calculator Pseudocode
 
+## Start the program
 
-
-**Step 1:** Start the program
+**Step 1:** declare BMI,weight,height,cont using float data_type.
 
 **Step 2:** Print "This is a Body Mass Index (BMI) calculator"
 
@@ -58,7 +58,7 @@
    - Print "Thank you for using my BMI calculator."
    - Break from the loop
 
-**Step 14:** End the program
+## End the program
 
 
 
