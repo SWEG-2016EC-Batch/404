@@ -36,7 +36,7 @@
 
 
 
-##Flow chart
+## Flow chart
 
 
 ![Flow chart](power_problem.png)
