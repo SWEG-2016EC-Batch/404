@@ -4,6 +4,8 @@
 -maximum number of gallons the car is capable of holding
 
 -how many miles the car can travel with each gallon.
+
+-validates input so that the inputs entered are greater or equal to 0.
 ## Calculation
 
 Calculate the maximum amount of miles the car can travel without refueling by multiplying the two inputs.
