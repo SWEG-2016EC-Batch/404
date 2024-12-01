@@ -1,39 +1,42 @@
 // Body Mass Index (BMI) Calculating by using c++
 #include <iostream>
-#include <string>
-
 using namespace std;
 
 int main() {
-    double weight, height, bmi;
-    string response;
+    float weight, height, bmi;
+    char choice;
 
-    while (true) {
-        
-        cout << "Enter weight in kilograms: ";
+    do {
+       
+        cout << "Enter your weight in kilograms: ";
         cin >> weight;
-        cout << "Enter height in meters: ";
-        cin >> 
-        if (height <= 0) {
-            cout << "Height must be a positive number." << endl;
-            continue;
-        }
 
-        // Calculate BMI
+       
+        cout << "Enter your height in meters: ";
+        cin >> 
         bmi = weight / (height * height);
 
+        
         cout << "Your BMI is: " << bmi << endl;
 
-        // Ask user if they want to calculate again
-        cout << "Do you want to calculate BMI for another person? (yes/no): ";
-        cin >> response;
-
-        // Check if user wants to exit
-        if (response == "no") {
-            break; // Exit the loop
+        // Determine weight category
+        if (bmi < 18.5) {
+            cout << "Category: Underweight" << endl;
+        } else if (bmi >= 18.5 && bmi < 24.9) {
+            cout << "Category: Normal weight" << endl;
+        } else if (bmi >= 25 && bmi < 29.9) {
+            cout << "Category: Overweight" << endl;
+        } else {
+            cout << "Category: Obesity" << endl;
         }
-    }
+
+        // Ask if the user wants to calculate again
+        cout << "Do you want to calculate again? (y/n): ";
+        cin >> choice;
+
+    } while (choice == 'y' || choice == 'Y');
 
     cout << "Thank you for using the BMI calculator!" << endl;
+
     return 0;
 }
