@@ -39,4 +39,4 @@
 # Flow chart
 
 
-![Flow chart](power_problem.png)
+![Flow chart](3.png)
