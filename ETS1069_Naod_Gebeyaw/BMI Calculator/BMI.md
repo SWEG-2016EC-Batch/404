@@ -12,7 +12,7 @@
 ## Operation
 1. **Iteration**: Use a `for` loop to process each person.
 2. **Selection Statement**: Use multi-conditional statements to determine BMI catagory of each person.
-3. **Multiplication**: weight/height*height
+3. **Multiplication**: weight/（height*height）
 
 ## Pseudo Code
 1. Start the program.
