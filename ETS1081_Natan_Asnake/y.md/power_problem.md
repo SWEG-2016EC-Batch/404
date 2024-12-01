@@ -37,4 +37,6 @@
 
 
 #Flow chart
+
+
 ![Flowchart](power_problem.png)
