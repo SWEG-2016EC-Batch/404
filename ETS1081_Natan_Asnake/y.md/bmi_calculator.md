@@ -19,8 +19,7 @@
 ## Loop 
 - Offers the user an option to continue or terminate the program after each calculation.
 
-## User Interface
-- Console-based interaction with prompts and outputs printed in the terminal.
+
 
 
 # BMI Calculator Pseudocode
