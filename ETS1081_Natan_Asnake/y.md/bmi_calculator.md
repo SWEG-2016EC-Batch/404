@@ -1,4 +1,4 @@
-# System design for bmi calculator
+
 # BMI Calculator System Design
 
 ## 1. Input Handling
