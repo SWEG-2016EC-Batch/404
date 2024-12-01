@@ -1,3 +1,28 @@
+
+
+
+# BMI Calculator System Design
+
+## Input 
+- Accepts user input for height and weight.
+- Validates inputs to ensure they are positive numbers.
+
+## BMI Calculation
+- Computes BMI using the formula: 
+  [
+  BMI=weight/(height*height)]
+
+## Output
+- Displays the calculated BMI.
+- Provides feedback on weight category based on BMI value.
+
+## Loop 
+- Offers the user an option to continue or terminate the program after each calculation.
+
+## User Interface
+- Console-based interaction with prompts and outputs printed in the terminal.
+
+
 # BMI Calculator Pseudocode
 
 ## Step 1: Start the program
