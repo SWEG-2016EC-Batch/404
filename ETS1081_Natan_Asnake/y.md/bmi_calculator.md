@@ -8,7 +8,7 @@
 ## 2. BMI Calculation
 - Computes BMI using the formula: 
   [
-  \BMI=weight/height*height]
+  BMI=weight/(height*height)]
 
 ## 3. Output
 - Displays the calculated BMI.
