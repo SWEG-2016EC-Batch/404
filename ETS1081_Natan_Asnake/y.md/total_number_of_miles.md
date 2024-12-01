@@ -26,3 +26,7 @@ Calculate the maximum amount of miles the car can travel without refueling by mu
 6. Set miles = gallons * miles_per_gallon.  
 
 7. Print "Your car can travel miles miles without refueling."
+
+
+# Flow chart
+![Flowchart](total_number_of_miles.png)
