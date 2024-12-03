@@ -1,5 +1,5 @@
 Algorithm Design for number of miles 
- 
+  
   Input 
   By using float data type
 Gallons 
