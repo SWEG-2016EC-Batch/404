@@ -1,10 +1,6 @@
-// Online C++ compiler to run C++ program online
 #include <iostream>
 using namespace std;
-/*
-Write a program that read the various assessments, compute the total mark and print the corresponding letter-grade based on the following scales.
-Test 15%, Quiz 5%, Project 20%, Assignment 10%, Final exam 50%
-*/
+
 int main() {
     int test, quiz, project, assignment, final, total;
     cout << "Enter your results in order using space as \n(Test 15%, Quiz 5%, Project 20%, Assignment 10%, Final exam 50%)" << endl; 
