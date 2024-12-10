@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 int main(){
-    double test,quiz,project,assignment,final,total;
+    double test,quiz,project,assignment,finalscore,total;
     cout<<"Enter score obtained for test out of (15%): ";
     cin>>test;
     if (cin.fail()||test>15){
@@ -35,14 +35,14 @@ int main(){
         return 1;
     }
     cout<<"Enter score obtained for final exam out of (50%): ";
-    cin>>final; 
-    if (cin.fail()||final>50){
+    cin>>finalscore; 
+    if (cin.fail()||finalscore>50){
         cout<<"invalid input";
         cin.clear();
         cin.ignore();
         return 1;
     }
-    total=test+quiz+project+assignment+final;
+    total=test+quiz+project+assignment+finalscore;
     cout<<"your total grade is : "<<total<<endl;
     if (total>=90){
         cout<<"A+";
