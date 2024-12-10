@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 int main(){
-    double test,quiz,project,assignment,finalscore,total;
+    double test,quiz,project,assignment,finalScore,total;
     cout<<"Enter score obtained for test out of (15%): ";
     cin>>test;
     if (cin.fail()||test>15){
@@ -35,32 +35,32 @@ int main(){
         return 1;
     }
     cout<<"Enter score obtained for final exam out of (50%): ";
-    cin>>finalscore; 
-    if (cin.fail()||finalscore>50){
+    cin>>finalScore; 
+    if (cin.fail()||finalScore>50){
         cout<<"invalid input";
         cin.clear();
         cin.ignore();
         return 1;
     }
-    total=test+quiz+project+assignment+finalscore;
+    total=test+quiz+project+assignment+finalScore;
     cout<<"your total grade is : "<<total<<endl;
     if (total>=90){
         cout<<"A+";
     }else if (90>total>=80){
         cout<<"A";
-}
-else if (80>total  && total>=75){
-    cout<<"B+";
-}else if (75>total && total >=60){
-    cout<<"B";
-}else if (60>total && total>=55){
-    cout<<"C+";
-}else if (55>total && total>=45){
-    cout<<"C";
-}else if (45>total && total>=30){
-    cout<<"D";
-}else if (total<30){
-    cout<<"F";
-}
-    return 0;
-}
+    }
+    else if (80>total  && total>=75){
+        cout<<"B+";
+    }else if (75>total && total >=60){
+        cout<<"B";
+    }else if (60>total && total>=55){
+        cout<<"C+";
+    }else if (55>total && total>=45){
+        cout<<"C";
+    }else if (45>total && total>=30){
+        cout<<"D";
+    }else if (total<30){
+        cout<<"F";
+    }
+        return 0;
+    }
