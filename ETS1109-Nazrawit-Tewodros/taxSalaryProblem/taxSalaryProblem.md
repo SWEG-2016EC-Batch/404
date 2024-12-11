@@ -27,13 +27,13 @@ up to 200 Br-0%</br>
 2. Read base salary.
 3. Validate input</br>
    3.1. If input is correct continue else break
-4. Read hours worked
+4. Read hours worked</br>
    4.1. If input is correct continue else break
 5. Read bonus rate per hour
-6. if hours worked >40
-   6.1. Read overtime bonus rate
-   6.2. compute overtimeHours = workedHours - 40
-   6.3. compute overtimePay = overtimeHours * overtimeRate
+6. if hours worked >40</br>
+   6.1. Read overtime bonus rate</br>
+   6.2. compute overtimeHours = workedHours - 40</br>
+   6.3. compute overtimePay = overtimeHours * overtimeRate</br>
 7. else set overtimePay=0
 8. Compute bonusPay = (workedHours * bonusRate) + overtimePay
 9. Compute grossPay = baseSalary + bonusPay
