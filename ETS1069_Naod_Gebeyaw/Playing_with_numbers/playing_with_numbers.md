@@ -32,34 +32,31 @@
 8. Present a menu to the user with different operations.
 9. Based on the user’s input, perform the selected operation:
 
-   - **1. Reverse the given number**:
+    **1. Reverse the given number**:
      - Print the reversed number by iterating over the `reverse[]` array.
 
-   - **2. Count the number of digits**:
+    **2. Count the number of digits**:
      - Print the value of `counter`, which holds the number of digits.
 
-   - **3. Product of even digits**:
+    **3. Product of even digits**:
      - Iterate over the `num_arry[]` array, multiply the even digits together, and display the result.
 
-   - **4. First and last digit and their sum**:
+    **4. First and last digit and their sum**:
      - Print the first and last digit and their sum by accessing `num_arry[0]` and `num_arry[counter-1]`.
 
-   - **5. Swap the first and last digit of the number**:
+    **5. Swap the first and last digit of the number**:
      - Swap the first and last digit in `num_arry[]` and display the new number.
 
-   - **6. Palindrome Check**:
+    **6. Palindrome Check**:
      - Compare the `reverse[]` array with `num_arry[]` to check if the number is a palindrome.
 
-   - **7. Frequency of each digit**:
+    **7. Frequency of each digit**:
      - Count the frequency of each digit (0-9) in `num_arry[]` and display it in a table format.
 
-   - **8. Strong number check**:
+    **8. Strong number check**:
      - Calculate the factorial of each digit and sum them up. If the sum equals the original number, print "Strong", otherwise "Not Strong".
 
-   - **9. Perfect number check**:
+    **9. Perfect number check**:
      - Calculate the sum of divisors of the number. If the sum of divisors equals the number, print it as a perfect number; otherwise, print it as not perfect.
 
 10. End the program.
-
-## Flowchart
-![Flowchart](number_operations.jpeg)
