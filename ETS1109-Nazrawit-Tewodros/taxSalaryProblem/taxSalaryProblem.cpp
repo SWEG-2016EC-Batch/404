@@ -1,39 +1,68 @@
 #include <iostream>
 using namespace std;
 int main() {
-   double baseSalary,workedHours,bonusRate,pension;
-   double taxRate,grossSalary,bonus,overTimeBonus;
-   double netSalary,tax;
-   cout<<"Enter your base salary,total hours worked and bonus rate respectively";
-   cin>>baseSalary>>workedHours>>bonusRate;
-   if (workedHours>=40){
-       cout<<"Enter an overtime bonus rate per hour";
-       cin>>overTimeBonus;
-       bonus=workedHours*overTimeBonus;
-   }else {
-       bonus=workedHours*bonusRate;
-   }
-    pension=baseSalary*0.07;
-    grossSalary=baseSalary+bonus;
-   if (baseSalary<200){
-       taxRate=0;
-   }else if (200<=baseSalary<600){
-       taxRate=0.1;
-   }else if (600<=baseSalary<1200){
-       taxRate=0.15;
-   }else if (1200<=baseSalary<2000){
-       taxRate=0.2;
-   }else if (2000<=baseSalary<3500){
-       taxRate=0.25;
-   }else if (3500<=baseSalary){
-       taxRate=0.3;
-   }
-   tax=grossSalary*taxRate;
-   netSalary=(grossSalary-pension-tax);
-   cout<<"your monthly pay check comes to..."<<endl;
-   cout<<"Bonus: "<<bonus<<endl;
-   cout<<"Pension: "<<pension<<endl;
-   cout<<"Gross Salary: "<<grossSalary<<endl;
-   cout<<"Tax: "<<tax<<endl;
-   cout<<"Net Salary: "<<netSalary<<endl;
+    double baseSalary, workedHours, bonusRate, overtimeRate = 0.0;
+    double pensionRate = 0.07, taxRate, grossPay, netPay, pension, tax, overtimePay;
+    cout << "Enter base salary: ";
+    cin >> baseSalary;
+    if (cin.fail() || baseSalary < 0) {
+        cin.clear();
+        cin.ignore();
+        cout << "Invalid input, please enter a valid salary.\n";
+        return 1;
+    }
+    cout << "Enter worked hours: ";
+    cin >> workedHours;
+    if (cin.fail() || workedHours < 0) {
+        cin.clear();
+        cin.ignore();
+        cout << "Invalid input, please enter valid hours.\n";
+        return 1;
+    }
+    cout << "Enter bonus rate per hour: ";
+    cin >> bonusRate;
+    if (cin.fail() || bonusRate < 0) {
+        cin.clear();
+        cin.ignore();
+        cout << "Invalid input, please enter a valid bonus rate.\n";
+        return 1;
+    }
+    if (workedHours > 40) {
+        cout << "Enter overtime bonus rate per hour: ";
+        cin >> overtimeRate;
+        if (cin.fail() || overtimeRate < 0) {
+            cin.clear();
+            cin.ignore();
+            cout << "Invalid input, please enter a valid overtime rate.\n";
+            return 1;
+        }
+        double overtimeHours = workedHours - 40;
+        overtimePay = overtimeHours * overtimeRate;
+    } else {
+        overtimePay = 0;
+    }
+    double bonusPay = workedHours * bonusRate + overtimePay;
+    grossPay = baseSalary + bonusPay;
+    pension = baseSalary * pensionRate;
+    if (baseSalary <= 200) {
+        taxRate = 0.0;
+    } else if (baseSalary <= 600) {
+        taxRate = 0.10;
+    } else if (baseSalary <= 1200) {
+        taxRate = 0.15;
+    } else if (baseSalary <= 2000) {
+        taxRate = 0.20;
+    } else if (baseSalary <= 3500) {
+        taxRate = 0.25;
+    } else {
+        taxRate = 0.30;
+    }
+    tax = grossPay * taxRate;
+    netPay = grossPay - pension - tax;
+    cout << "\nGross Pay: " << grossPay << endl;
+    cout << "Pension Deduction (7%): " << pension << endl;
+    cout << "Tax Deduction (" << taxRate * 100 << "%): " << tax << endl;
+    cout << "Net Pay: " << netPay << endl;
+    return 0;
 }
+
