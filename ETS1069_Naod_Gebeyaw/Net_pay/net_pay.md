@@ -1,4 +1,4 @@
-# System Design for Salary Calculation
+# System Design for Net-pay Calculation
 
 ## Input
 1. **Basic Salary**: Float data type
@@ -14,8 +14,8 @@
 5. **Net Pay of the Employee**
 
 ## Operations
-**Addition**
-
+1. **Addition**
+2. **selection**
 ## Pseudocode
 1. Start the program.
 2. Declare `basic_salary`, `worked_hour`, `bonus_rate`, `over_time_bonus_rate` as `float` data types.
