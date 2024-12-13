@@ -21,6 +21,15 @@ int main() {
 
     cout<<"Please enter your result out of the 50% final: ";
     cin>>final;
+    
+     if(test > 15 || quiz > 5 || project > 20 || assignment > 10 || final > 50){
+        cout << "You didn't enter the appropriate value!";
+        return 0;
+    }
+    if(cin.fail()) {
+        cout << "you have entered invalid input!";
+        return 0;
+    }
 
     total_mark = test + quiz + assignment + project + final;
 
