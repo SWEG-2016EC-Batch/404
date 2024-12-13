@@ -2,6 +2,7 @@
 ## Pseudocode for hollow full pyramid
 
 Start
+
 Initialize i = 1
 ### Input
     Read rows
