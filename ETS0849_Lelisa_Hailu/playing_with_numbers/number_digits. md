@@ -1,0 +1,20 @@
+algorithm Design for counting number of digit
+
+
+Input
+number
+Output
+count number of digit
+Operation
+Iteration: for loop
+Intialization: counter -> 0 int data type
+Pseudo Code
+1.Start the program.
+2.Initialize counter to 0 and declare original_number with 3.data type int.
+4.Take input and store it on original_number
+if original_number different from 0 go to step 4.1 else go to step 5
+ 4.1 divide original number by 10 and put it in original number
+ 4.2 increment counter by 1 
+4.3 go to step 4
+5.print the counter
+6.stop the program
