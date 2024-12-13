@@ -1,4 +1,4 @@
-# Pseudocode for Nested Loops
+# Pseudocode for Numbers rectangle
 
 ## Step 1: Start
 
