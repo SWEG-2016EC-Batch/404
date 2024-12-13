@@ -86,7 +86,7 @@ int main() {
     cout << "\nHollow square:\n";
     for (int i = 1; i <= 5; i++) {
         for (int j = 1; j <= 5; j++) {
-            if (i == 1  i == 5  j == 1 || j == 5) {
+            if (i == 1 || i == 5 || j == 1 || j == 5) {
                 cout << "*";
             } else {
                 cout << " ";
@@ -99,7 +99,7 @@ int main() {
     cout << "\nHollow Inverted Half Pyramid:\n";
     for (int i = 6; i >= 1; i--) {
         for (int j = 1; j <= i; j++) {
-            if (j == 1  j == i  i == 6) {
+            if (j == 1 || j == i || i == 6) {
                 cout << "*";
             } else {
                 cout << " ";
@@ -125,7 +125,7 @@ for(int i =1; i<=6;i++){
             cout << " ";
         }
         for (int k = 1; k <= 2 * i - 1; k++) {
-            if (k == 1  k == 2 * i - 1  i == 6) {
+            if (k == 1 || k == 2 * i - 1 || i == 6) {
                 cout << "*";
             } else {
                 cout << " ";
