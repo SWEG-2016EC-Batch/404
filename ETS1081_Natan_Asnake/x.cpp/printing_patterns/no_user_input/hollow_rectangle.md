@@ -10,9 +10,9 @@ If i > 7 then go to EndProgram
 Initialize j = 1
 
 ### InnerLoop
-If j > 9 then go to NewLine
+If j > 8 then go to NewLine
 
-If i == 1 or i == 7 or j == 1 or j == 9 then
+If i == 1 or i == 8 or j == 1 or j == 9 then
     Output "* "
     
 else
