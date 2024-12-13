@@ -7,10 +7,10 @@ Initialize i = 1
 
 If i > 6 then go to EndProgram
 
-Initialize j = 1
+Initialize j = 0
 
 ### InnerLoop
-If j > (7 - i) then go to NewLine
+If j > (6 - i) then go to NewLine
 
 Output "* "
 
