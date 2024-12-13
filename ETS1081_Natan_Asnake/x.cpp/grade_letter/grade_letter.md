@@ -1,59 +1,57 @@
-# start
+## start
+  ### input
+        Read test,quiz,assignment,project and final
 
-  ## input
-    Read test,quiz,assignment,project and final
+  ### calculation
+     calculate total marks as total_mark = test + quiz + assignment + project + final
 
-  ## calculation
+     if total_mark >= 90 
 
-  calculate total marks as total_mark = test + quiz + assignment + project + final
-
-  if total_mark >= 90 
-
-  print A+
+          print A+
   
-  goto End program
+          goto End program
 
-  if total_mark >= 80 
+     if total_mark >= 80 
 
-  print A
+          print A
   
-  goto End program
+          goto End program
 
-  if total_mark >= 75 
+     if total_mark >= 75 
 
-  print B+
+          print B+
   
-  goto End program
+          goto End program
 
-  if total_mark >= 60 
+     if total_mark >= 60 
 
-  print B
+          print B
   
-  goto End program
+          goto End program
 
-  if total_mark >= 55
+     if total_mark >= 55
 
-  print C+
+          print C+
         
-  goto End program
+          goto End program
 
- if total_mark >=  45
+     if total_mark >=  45
 
-  print C
+          print C
   
-  goto End program
+          goto End program
 
-  if total_mark >= 30 
+      if total_mark >= 30 
 
-  print D
+          print D
   
-  goto End program
-  
-  if total_mark < 30 
+          goto End program
 
-  print F
+      if total_mark < 30 
+
+          print F
   
-  goto End program
+          goto End program
 
  ## End program
-   End program
+    End program
