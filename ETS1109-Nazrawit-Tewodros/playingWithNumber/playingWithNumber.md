@@ -23,4 +23,6 @@ equals the number.</br>
 ## **PSEUDOCODE**
 1. Start the program
 2. Choose an operation to perform from a menu.
-3. If choice is equal to 1... 
+3. If choice is equal to 1... perform the first operation
+4. else perform teh othetr
+5. stop the program 
