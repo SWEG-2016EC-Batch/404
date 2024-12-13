@@ -10,13 +10,24 @@ If i > 6 then go to EndProgram
 Initialize j = 1
 
 ### InnerLoop
-If j > (7 - i) then go to NewLine
+If j > (6 - i) then go to StarLoop
 
-Output "* "
+Output "  "  
 
 Increment j by 1
 
 Go to InnerLoop
+
+### StarLoop
+Initialize k = 1
+
+If k > i then go to NewLine
+
+Output "* "
+
+Increment k by 1
+
+Go to StarLoop
 
 ### NewLine
 Output new line
