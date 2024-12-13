@@ -2,10 +2,11 @@
 ## Pseudocode for hollow full pyramid
 
 Start
+Initialize i = 1
 ### Input
     Read rows
     read columns
-Initialize i = 1
+
 
 ### OuterLoop
 If i > rows then go to EndProgram
