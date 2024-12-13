@@ -4,7 +4,7 @@
 Start
 ### Input
     Read rows
-    Read columns
+
 
 ### OuterLoop
 Initialize i = 1
