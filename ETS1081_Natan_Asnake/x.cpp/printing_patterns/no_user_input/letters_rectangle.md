@@ -9,7 +9,7 @@ If i > 5 then go to EndProgram
 Initialize j = 1
 
 ### InnerLoop
-If j > i then go to NewLine
+If j > 5 then go to NewLine
 
 Calculate ch = 'a' + (j - 1) % 26
 
