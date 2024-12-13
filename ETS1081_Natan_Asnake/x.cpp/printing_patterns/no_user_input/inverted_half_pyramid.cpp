@@ -6,7 +6,7 @@ int main() {
 
     for (i=1;i<=6;i++) {
 
-        for (j=1;j<=7-i;j++) {
+        for (j=0;j<=6-i;j++) {
             cout<<"* ";
         }
 
