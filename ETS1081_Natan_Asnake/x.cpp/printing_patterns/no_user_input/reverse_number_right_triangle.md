@@ -1,4 +1,4 @@
-## Pseudocode for reverse numver right triangle
+## Pseudocode for reverse number right triangle
 
 Start
 
