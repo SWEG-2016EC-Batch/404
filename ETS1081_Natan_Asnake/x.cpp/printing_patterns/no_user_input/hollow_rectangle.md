@@ -14,6 +14,7 @@ If j > 9 then go to NewLine
 
 If i == 1 or i == 7 or j == 1 or j == 9 then
     Output "* "
+    
 else
     Output "  "
 
