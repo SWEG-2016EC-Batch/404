@@ -9,7 +9,7 @@ int main() {
     cin>>cols;
     for (i=1;i<=rows;i++){
         for (j=1;j<=cols-i;j++) {
-            cout<<"  ";
+            cout<<" ";
         }
     for (k=1;k<=i;k++){
         cout<<"* ";
