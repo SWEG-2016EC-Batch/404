@@ -12,6 +12,8 @@ int i,j,k;
             }else {
                 cout<<"  ";
             }
-        }cout<<endl;
+        }
+        cout<<endl;
     }
+    return 0;
 }
