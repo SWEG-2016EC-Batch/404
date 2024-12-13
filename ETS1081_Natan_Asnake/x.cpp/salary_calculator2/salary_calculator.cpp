@@ -13,6 +13,9 @@ int main() {
 
     cout<<"Please enter your weekly working hours: ";
     cin>>working_hours;
+     if(cin.fail() || base_salary<0 || weekly_hours < 0)
+         cout<<"Invalid Input"<<endl;
+         return 1;
 
     if (working_hours > 40) {
         cout<<"Enter your companys's bonus rate: ";
@@ -20,7 +23,7 @@ int main() {
         bonus = (working_hours - 40) * bonus_rate;
     }
     gross_salary = base_salary + bonus;
-    if (gross_salary <= 200) {
+    if ( gross_salary <= 200) {
         tax_rate = 0;
     }
     else if (gross_salary > 200 && gross_salary <= 600) {
@@ -35,9 +38,12 @@ int main() {
     else if (gross_salary > 2000 && gross_salary < 3500) {
         tax_rate = 0.25;
     }
-    else {
+    else if(gross_salary >= 3500) {
         tax_rate = 0.3;
     }
+     else
+        cout << "INVALID!";
+    
 
     pension = base_salary * 0.07;
     tax = gross_salary * tax_rate;
