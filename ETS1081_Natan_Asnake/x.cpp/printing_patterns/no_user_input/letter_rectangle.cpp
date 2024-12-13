@@ -7,7 +7,7 @@ int main() {
     for (int i = 0; i < 5; i++) {
         for (int j = 0; j < 5; j++) {
             char ch = 'a' + (j % 26);
-            cout << ch;
+            cout << ch<<" ";
         }
         cout << endl;
     }
