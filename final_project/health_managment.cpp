@@ -1,19 +1,63 @@
 #include <iostream>
-
+#include <string>
 using namespace std;
 
-int main(){
-  // Naod
-  int unique_id = 1; // this id will be used to allocate unique id and incrmented each time it is used
-  //intalize 3d array with character data type or string data type to store user  name,age,gender,id,type of treatments it is used,address,appointment,for appointment as a place holder use 0,
-//    Example:
-//    - Patients array: patients[MAX_PATIENTS][5]
-//      Index 0: unique_id
-//      Index 1: Name (string)
-//      Index 2: Age (
-//      Index 3: Gender (string/char)
-//      Index 4: Address (string)
-//      Index 5: Appointments (array or list of appointments)
+int main() {
+    const int MAX_PATIENTS = 100; //can be changed if necessary
+    const int MAX_APPOINTMENTS = 5;
+    int unique_id = 1;
+    string patients[MAX_PATIENTS][6]; // 2D array to store patient info: [ID][Name][Age][Gender][Address][Appointments]
+    string appointments[MAX_PATIENTS][MAX_APPOINTMENTS][3]; // 3D array for appointments: [Patient ID][Appointment Index][Date, Time, Treatment]
+    int choice;
+    int patient_id;
+
+    while (true) {
+        // Display the menu
+        cout << "\n*** HEALTHCARE MANAGEMENT SYSTEM ***\n\n";
+        cout << "Press 1 To Add Patient\n";
+        cout << "Press 2 To Add Appointment\n";
+        cout << "Press 3 To Display Patient Details\n";
+        cout << "Press 4 To Exit\n\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+        cin.ignore();  // To consume the newline character left by cin
+
+        switch (choice) {
+            case 1: {
+                // Add a new patient
+                cout << "Enter Patient Full Name: ";
+                getline(cin, patients[unique_id - 1][1]);
+                
+                cout << "Enter Patient Age: ";
+                getline(cin, patients[unique_id - 1][2]);
+                
+                cout << "Enter Patient Gender (M / F): ";
+                getline(cin, patients[unique_id - 1][3]);
+                
+                cout << "Enter Patient Address: ";
+                getline(cin, patients[unique_id - 1][4]);
+
+                // Initialize appointments to "0" indicating no appointment
+                for (int i = 0; i < MAX_APPOINTMENTS; i++) {
+                    appointments[unique_id - 1][i][0] = "0"; // Date
+                    appointments[unique_id - 1][i][1] = "0"; // Time
+                    appointments[unique_id - 1][i][2] = "0"; // Treatment
+                }
+
+                cout << "Patient added with ID: " << unique_id << endl;
+                unique_id++;  // Increment to next unique ID
+                break;
+            }
+         //case 2,3,4 ADD HERE
+            
+            default:
+                cout << "Invalid choice. Please try again.\n";
+        }
+    }
+
+    return 0;
+}
+
         
 
 // 2. Define the structure for an appointment:
