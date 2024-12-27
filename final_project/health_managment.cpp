@@ -8,11 +8,13 @@ int main(){
   //intalize 3d array with character data type or string data type to store user  name,age,gender,id,type of treatments it is used,address,appointment,for appointment as a place holder use 0,
 //    Example:
 //    - Patients array: patients[MAX_PATIENTS][5]
-//      Index 0: Name (string)
-//      Index 1: Age (integer)
-//      Index 2: Gender (string/char)
-//      Index 3: Address (string)
-//      Index 4: Appointments (array or list of appointments)
+//      Index 0: unique_id
+//      Index 1: Name (string)
+//      Index 2: Age (
+//      Index 3: Gender (string/char)
+//      Index 4: Address (string)
+//      Index 5: Appointments (array or list of appointments)
+        
 
 // 2. Define the structure for an appointment:
 //    - Each appointment should include at least the following attributes:
