@@ -121,5 +121,8 @@ int main(){
 //      - List of treatments provided and their counts.
 //    - Ensure the report is clear and easy to read.
 
+
+
+  // Additional task Nathnael and Nazrawit: bug fixes and using best practices and maintaining the code
   return 0;
 }
