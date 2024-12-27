@@ -86,7 +86,46 @@ int main() {
 
                 break;
             }
-         //case 3,4 ADD HERE
+             case 3: {  // Display Patient Details
+                    cout << "Enter Patient ID to Display Details: ";
+                    cin >> patientId;
+                    cin.ignore();
+                    
+                    if (patientId < 1 || patientId >= uniqueId) {
+                        cout << "Invalid Patient ID.\n";
+                        break;
+                    }
+                    
+                    cout << "\n*** Patient Details ***\n";
+                    cout << "Patient ID: " << patientId << endl;
+                    cout << "Name: " << patients[patientId - 1][1] << endl;
+                    cout << "Age: " << patients[patientId - 1][2] << endl;
+                    cout << "Gender: " << patients[patientId - 1][3] << endl;
+                    cout << "Address: " << patients[patientId - 1][4] << endl;
+    
+                    cout << "\n*** Appointments ***\n";
+                    bool hasAppointments = false;
+                    for (int i = 0; i < MaxAppointments; i++) {
+                        if (appointments[patientId - 1][i][0] != "0") {
+                            hasAppointments = true;
+                            cout << "Appointment " << i + 1 << ": " << endl;
+                            cout << "Date: " << appointments[patientId - 1][i][0] << endl;
+                            cout << "Time: " << appointments[patientId - 1][i][1] << endl;
+                            cout << "Treatment: " << appointments[patientId - 1][i][2] << endl;
+                            cout << endl;
+                        }
+                    }
+                    if (!hasAppointments) {
+                        cout << "No appointments scheduled for this patient.\n";
+                    }
+    
+                    break;
+                }
+    
+                case 4: {  // Exit
+                    cout << "Exiting Healthcare Management System...\n";
+                    return 0;  // Exits the program
+                }
             
             default:
                 cout << "Invalid choice. Please try again.\n";
