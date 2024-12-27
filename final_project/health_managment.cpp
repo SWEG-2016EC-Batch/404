@@ -48,7 +48,45 @@ int main() {
                 unique_id++;  // Increment to next unique ID
                 break;
             }
-         //case 2,3,4 ADD HERE
+
+            case 2: {
+                // Display patient details
+                cout << "Enter patient ID to display details: ";
+                cin >> patient_id;
+                cin.ignore();
+
+                if (patient_id < 1 || patient_id >= unique_id) {
+                    cout << "Invalid patient ID\n";
+                    break;
+                }
+
+                // Display patient information
+                cout << "\tPatient ID: " << patient_id << endl;
+                cout << "\tName: " << patients[patient_id - 1][1] << endl;
+                cout << "\tAge: " << patients[patient_id - 1][2] << endl;
+                cout << "\tGender: " << patients[patient_id - 1][3] << endl;
+                cout << "\tAddress: " << patients[patient_id - 1][4] << endl;
+
+                // Display appointments for this patient
+                cout << "Appointments:\n";
+                bool has_appointments = false;
+                for (int i = 0; i < MAX_APPOINTMENTS; i++) {
+                    if (appointments[patient_id - 1][i][0] != "0") {
+                        // If appointment exists
+                        cout << "Date: " << appointments[patient_id - 1][i][0]
+                             << ", Time: " << appointments[patient_id - 1][i][1]
+                             << ", Treatment: " << appointments[patient_id - 1][i][2] << endl;
+                        has_appointments = true;
+                    }
+                }
+
+                if (!has_appointments) {
+                    cout << "No appointments scheduled for this patient.\n";
+                }
+
+                break;
+            }
+         //case 3,4 ADD HERE
             
             default:
                 cout << "Invalid choice. Please try again.\n";
@@ -57,14 +95,6 @@ int main() {
 
     return 0;
 }
-
-        
-
-// 2. Define the structure for an appointment:
-//    - Each appointment should include at least the following attributes:
-//      - Appointment date (string or structured date format)
-//      - Appointment time (string or structured time format)
-//      - Treatment type (string)
 
   
   // Nathan
