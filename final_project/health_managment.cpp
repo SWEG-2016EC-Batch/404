@@ -194,7 +194,7 @@ int main() {
                 bool appointment_added = false;
                 for (int i = 0; i < max_appoinments; i++) {
                     if (appointments[patient_id - 1][i][0] == "0") { // Find an empty appointment slot
-                       int day, month;
+                      
 
                 // Store appointment date
                 cout << "Enter appointment date (DD/MM/YYYY): ";
@@ -259,12 +259,28 @@ int main() {
                         return 1; // Exit if any character is not a digit
                     }
                 }
-
-
-
-
-                        cout << "Enter treatment: ";
-                        getline(cin, appointments[patient_id - 1][i][2]); // Store treatment info
+                        
+                    cout << "Enter treatment: ";
+                        getline(cin, appointments[patient_id - 1][i][2]); //Get type of treatment
+                    bool valid = true;
+                    
+                    appointments[patient_id - 1][i][2] = type_of_treatment; // Store treatment in patients array
+        
+                    if (type_of_treatment.empty()) { // Check if treatment input is empty
+                        cout << "This section can't be empty!" << endl;
+                        valid = false;
+                        continue; // Prompt again for treatment input
+                        
+                    }
+                    else if( !isalpha (type_of_treatment[0] )  || !isalpha ( type_of_treatment[1] ) || !isalpha (type_of_treatment[2] ) ){
+                        cout<<"Please enter a currently existing treatment!"<<endl;
+                        valid = false;
+                        continue;
+                    }
+                    
+                        if(valid){
+                            break; // Exit loop after valid input
+                        } // Store treatment info
 
                         // Appointment successfully added
                         cout << "Appointment added successfully.\n";
