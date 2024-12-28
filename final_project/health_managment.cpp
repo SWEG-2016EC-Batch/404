@@ -181,32 +181,32 @@ int main() {
             case 2: {
                 // Add an appointment for an existing patient
                   for (int reps = 0; reps < 3; reps++) {
-        // Prompt user to enter patient ID for adding an appointment
-        cout << "Enter patient ID to add appointment: ";
-        cin >> patient_id;
-        
-        cin.ignore();
-        if (cin.fail() || patient_id < 1 || patient_id >= unique_id) {
-            // Handle invalid patient ID input
-            cout << "Invalid patient ID\n";
-            cin.clear(); // Clear the fail state
-            cin.ignore(); // Ignore the invalid input
-
-            if (reps == 2) {
-                // Terminate session after too many invalid attempts
-                cout << "Too many invalid attempts, session terminated." << endl;
-                return 1;
-                    }
-                    continue; // Continue to the next iteration to prompt for input again
-                } else {
-                    break; // Valid input, exit the loop
-                }
-            }
+                        // Prompt user to enter patient ID for adding an appointment
+                        cout << "Enter patient ID to add appointment: ";
+                        cin >> patient_id;
+                        
+                        cin.ignore();
+                        if (cin.fail() || patient_id < 1 || patient_id >= unique_id) {
+                            // Handle invalid patient ID input
+                            cout << "Invalid patient ID\n";
+                            cin.clear(); // Clear the fail state
+                            cin.ignore(); // Ignore the invalid input
+                
+                            if (reps == 2) {
+                                // Terminate session after too many invalid attempts
+                                cout << "Too many invalid attempts, session terminated." << endl;
+                                return 1;
+                                    }
+                                    continue; // Continue to the next iteration to prompt for input again
+                                } else {
+                                    break; // Valid input, exit the loop
+                                }
+                            }
 
     // Try to find an available appointment slot for the patient
-            bool appointment_added = false;
-            for (int i = 0; i < max_appoinments; i++) {
-                if (appointments[patient_id - 1][i][0] == "0") { // Find an empty appointment slot
+                    bool appointment_added = false;
+                    for (int i = 0; i < max_appoinments; i++) {
+                        if (appointments[patient_id - 1][i][0] == "0") { // Find an empty appointment slot
         
                     // Store appointment date
                     for (int reps = 0; reps < 3; reps++) {
@@ -241,7 +241,7 @@ int main() {
                         }
         
                         // Check each character for digits, skipping slashes
-                        for (int j = 0; j < appointments[patient_id - 1][i][0].length(); j++) {
+                    for (int j = 0; j < appointments[patient_id - 1][i][0].length(); j++) {
                             if (j == 2 || j == 5) {
                                 continue; // Skip slashes
                             }
@@ -294,7 +294,7 @@ int main() {
                         }
         
                         // Validate each character for digits, skipping the colon
-                        for (int j = 0; j < appointments[patient_id - 1][i][1].length(); j++) {
+                    for (int j = 0; j < appointments[patient_id - 1][i][1].length(); j++) {
                             if (j == 2) {
                                 continue; // Skip the colon
                             }
@@ -330,34 +330,34 @@ int main() {
                                 return 1;
                             }
                             continue; // Prompt again for treatment input
-                        } else if (!isalpha(type_of_treatment[0]) || !isalpha(type_of_treatment[1]) || !isalpha(type_of_treatment[2])) {
+                             } else if (!isalpha(type_of_treatment[0]) || !isalpha(type_of_treatment[1]) || !isalpha(type_of_treatment[2])) {
                             cout << "Please enter a currently existing treatment!" << endl;
                             valid = false;
                             if (reps == 2) {
                                 cout << "Too many invalid attempts, session terminated." << endl;
                                 return 1;
+                                }
+                                continue;
                             }
-                            continue;
+                
+                                if (valid) {
+                                    break; // Exit loop after valid input
+                                } // Store treatment info
+                            }
+                
+                            // Appointment successfully added
+                            cout << "Appointment added successfully.\n";
+                            appointment_added = true;
+                            break;
                         }
-        
-                        if (valid) {
-                            break; // Exit loop after valid input
-                        } // Store treatment info
                     }
-        
-                    // Appointment successfully added
-                    cout << "Appointment added successfully.\n";
-                    appointment_added = true;
+                
+                    // If no available appointment slots are found
+                    if (!appointment_added) {
+                        cout << "No available slots for this patient.\n";
+                    }
                     break;
                 }
-            }
-        
-            // If no available appointment slots are found
-            if (!appointment_added) {
-                cout << "No available slots for this patient.\n";
-            }
-            break;
-        }
 
             case 3: {
                 // Display patient details
@@ -438,7 +438,7 @@ int main() {
                     cout << "please enter Y or N" << endl;
                 }
                 break;
-}
+            }
 
             default:
                 // Handle invalid menu choices
