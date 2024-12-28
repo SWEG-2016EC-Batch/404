@@ -151,7 +151,7 @@ int main() {
                 if (confirm_exit == 'Y' || confirm_exit == 'y') {
                     cout << "Exiting Healthcare Management System...\n";
                     return 0;  // Exit the program with return 0
-                } elif ((confirm_exit == 'N' || confirm_exit == 'n'))  {
+                } else if ((confirm_exit == 'N' || confirm_exit == 'n'))  {
                     cout << "Returning to the main menu...\n";
                 } else {
                     cout << "please enter Y or N" << endl;
@@ -165,8 +165,6 @@ int main() {
         }
     }
 
-    return 0;  // End of the program
-}
 
 
   
