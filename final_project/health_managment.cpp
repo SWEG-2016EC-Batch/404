@@ -3,11 +3,11 @@
 using namespace std;
 
 int main() {
-    const int MAX_PATIENTS = 100; //can be changed if necessary
-    const int MAX_APPOINTMENTS = 5;
+    const int max_patient = 100; //can be changed if necessary
+    const int max_appoinments = 5;
     int unique_id = 1;
-    string patients[MAX_PATIENTS][6]; // 2D array to store patient info: [ID][Name][Age][Gender][Address][Appointments]
-    string appointments[MAX_PATIENTS][MAX_APPOINTMENTS][3]; // 3D array for appointments: [Patient ID][Appointment Index][Date, Time, Treatment]
+    string patients[max_patient][6]; // 2D array to store patient info: [ID][Name][Age][Gender][Address][Appointments]
+    string appointments[max_patient][max_appoinments][3]; // 3D array for appointments: [Patient ID][Appointment Index][Date, Time, Treatment]
     int choice;
     int patient_id;
 
@@ -38,7 +38,7 @@ int main() {
                 getline(cin, patients[unique_id - 1][4]);
 
                 // Initialize appointments to "0" indicating no appointment
-                for (int i = 0; i < MAX_APPOINTMENTS; i++) {
+                for (int i = 0; i < max_appoinments; i++) {
                     appointments[unique_id - 1][i][0] = "0"; // Date
                     appointments[unique_id - 1][i][1] = "0"; // Time
                     appointments[unique_id - 1][i][2] = "0"; // Treatment
@@ -70,7 +70,7 @@ int main() {
                 // Display appointments for this patient
                 cout << "Appointments:\n";
                 bool has_appointments = false;
-                for (int i = 0; i < MAX_APPOINTMENTS; i++) {
+                for (int i = 0; i < max_appoinments; i++) {
                     if (appointments[patient_id - 1][i][0] != "0") {
                         // If appointment exists
                         cout << "Date: " << appointments[patient_id - 1][i][0]
@@ -104,10 +104,10 @@ int main() {
                     cout << "Address: " << patients[patientId - 1][4] << endl;
     
                     cout << "\n*** Appointments ***\n";
-                    bool hasAppointments = false;
-                    for (int i = 0; i < MaxAppointments; i++) {
+                    bool has_appointments = false;
+                    for (int i = 0; i < max_appoinments; i++) {
                         if (appointments[patientId - 1][i][0] != "0") {
-                            hasAppointments = true;
+                            has_appointments = true;
                             cout << "Appointment " << i + 1 << ": " << endl;
                             cout << "Date: " << appointments[patientId - 1][i][0] << endl;
                             cout << "Time: " << appointments[patientId - 1][i][1] << endl;
@@ -115,7 +115,7 @@ int main() {
                             cout << endl;
                         }
                     }
-                    if (!hasAppointments) {
+                    if (!has_appointments) {
                         cout << "No appointments scheduled for this patient.\n";
                     }
     
