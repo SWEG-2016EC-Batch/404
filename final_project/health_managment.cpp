@@ -20,7 +20,7 @@ int main() {
     int choice; 
     int patient_id; 
     string name, Gender, address, type_of_treatment;
-    int age,original_age,months;
+    int age,original_age,months, day, month,hours,minutes;
     char gender;
 
     while (true) {
@@ -228,8 +228,40 @@ int main() {
                     }
                 }
                                         
-                        cout << "Enter appointment time (HH:MM): ";
-                        getline(cin, appointments[patient_id - 1][i][1]); // Store appointment time
+                       // Store appointment time
+                cout << "Enter appointment time in 24-hour format (HH:MM): ";
+                getline(cin, appointments[patient_id - 1][i][1]); // Store appointment time
+                
+                // Check if the time format is correct
+                if (appointments[patient_id - 1][i][1][2] != ':' || appointments[patient_id - 1][i][1].length() != 5) {
+                    cout << "Invalid format. Time must be in the format HH:MM" << endl; // Inform about invalid format
+                    return 1; // Exit if format is wrong
+                }
+                
+                // Convert hours and minutes from string to integers
+                hours = (appointments[patient_id - 1][i][1][0] - '0') * 10 + (appointments[patient_id - 1][i][1][1] - '0'); // Get hours
+                minutes = (appointments[patient_id - 1][i][1][3] - '0') * 10 + (appointments[patient_id - 1][i][1][4] - '0'); // Get minutes
+                
+                // Check if hours and minutes are valid
+                if (hours < 0 || hours > 23 || minutes < 0 || minutes > 59) {
+                    cout << "Please choose a valid hour or/and minute!" << endl; // Inform about invalid hour/minute
+                    return 1; // Exit if invalid
+                }
+                
+                // Validate each character for digits, skipping the colon
+                for (int j = 0; j < appointments[patient_id - 1][i][1].length(); j++) {
+                    if (j == 2) {
+                        continue; // Skip the colon
+                    }
+                    // Ensure each character is a digit
+                    if (!isdigit(appointments[patient_id - 1][i][1][j])) {
+                        cout << "A time can only have numbers and a colon!" << endl; // Inform about invalid characters
+                        return 1; // Exit if any character is not a digit
+                    }
+                }
+
+
+
 
                         cout << "Enter treatment: ";
                         getline(cin, appointments[patient_id - 1][i][2]); // Store treatment info
