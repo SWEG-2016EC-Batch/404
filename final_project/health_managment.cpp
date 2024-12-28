@@ -31,8 +31,8 @@ int main() {
         cout << "Press 4 To Exit\n\n";
         cout << "Enter your choice: ";
         cin >> choice;  // Get user input for menu choice
-        cin.ignore();  // To consume the newline character left by cin
-
+        cin.ignore();// To consume the newline character left by cin
+        cout<<"Please be aware that inputting an invalid information three times in any single one of the input sections will automatically terminate the program! \n \n";
         // Handle user input based on their menu choice
          switch (choice) {
             case 1: {
