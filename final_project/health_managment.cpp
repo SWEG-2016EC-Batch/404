@@ -3,39 +3,44 @@
 using namespace std;
 
 int main() {
-    const int max_patient = 100; //can be changed if necessary
+    // Declare constants for the maximum number of patients and appointments
+    const int max_patient = 100; 
     const int max_appoinments = 5;
+
+    // Initialize patient and appointment tracking variables
     int unique_id = 1;
-    string patients[max_patient][6]; // 2D array to store patient info: [ID][Name][Age][Gender][Address][Appointments]
-    string appointments[max_patient][max_appoinments][3]; // 3D array for appointments: [Patient ID][Appointment Index][Date, Time, Treatment]
-    int choice;
-    int patient_id;
+    // 2D array to store patient info: [ID][Name][Age][Gender][Address][Appointments]
+    string patients[max_patient][6]; 
+    // 3D array for appointments: [Patient ID][Appointment Index][Date, Time, Treatment]
+    string appointments[max_patient][max_appoinments][3]; 
+    int choice; 
+    int patient_id; 
 
     while (true) {
-        // Display the menu
         cout << "\n*** HEALTHCARE MANAGEMENT SYSTEM ***\n\n";
         cout << "Press 1 To Add Patient\n";
         cout << "Press 2 To Add Appointment\n";
         cout << "Press 3 To Display Patient Details\n";
         cout << "Press 4 To Exit\n\n";
         cout << "Enter your choice: ";
-        cin >> choice;
+        cin >> choice;  // Get user input for menu choice
         cin.ignore();  // To consume the newline character left by cin
 
+        // Handle user input based on their menu choice
         switch (choice) {
             case 1: {
                 // Add a new patient
                 cout << "Enter Patient Full Name: ";
-                getline(cin, patients[unique_id - 1][1]);
+                getline(cin, patients[unique_id - 1][1]); // Store patient name
                 
                 cout << "Enter Patient Age: ";
-                getline(cin, patients[unique_id - 1][2]);
+                getline(cin, patients[unique_id - 1][2]); // Store patient age
                 
                 cout << "Enter Patient Gender (M / F): ";
-                getline(cin, patients[unique_id - 1][3]);
+                getline(cin, patients[unique_id - 1][3]); // Store patient gender
                 
                 cout << "Enter Patient Address: ";
-                getline(cin, patients[unique_id - 1][4]);
+                getline(cin, patients[unique_id - 1][4]); // Store patient address
 
                 // Initialize appointments to "0" indicating no appointment
                 for (int i = 0; i < max_appoinments; i++) {
@@ -44,96 +49,108 @@ int main() {
                     appointments[unique_id - 1][i][2] = "0"; // Treatment
                 }
 
+                // Output confirmation of patient addition
                 cout << "Patient added with ID: " << unique_id << endl;
-                unique_id++;  // Increment to next unique ID
+                unique_id++;  // Increment to the next unique ID
                 break;
             }
 
             case 2: {
-                // Display patient details
-                cout << "Enter patient ID to display details: ";
-                cin >> patient_id;
-                cin.ignore();
+                // Add an appointment for an existing patient
+                cout << "Enter patient ID to add appointment: ";
+                cin >> patient_id;  // Get patient ID for appointment
+                cin.ignore();  // To consume the newline character left by cin
 
+                // Validate patient ID to ensure it exists
                 if (patient_id < 1 || patient_id >= unique_id) {
                     cout << "Invalid patient ID\n";
                     break;
                 }
 
-                // Display patient information
-                cout << "\tPatient ID: " << patient_id << endl;
-                cout << "\tName: " << patients[patient_id - 1][1] << endl;
-                cout << "\tAge: " << patients[patient_id - 1][2] << endl;
-                cout << "\tGender: " << patients[patient_id - 1][3] << endl;
-                cout << "\tAddress: " << patients[patient_id - 1][4] << endl;
-
-                // Display appointments for this patient
-                cout << "Appointments:\n";
-                bool has_appointments = false;
+                // Try to find an available appointment slot for the patient
+                bool appointment_added = false;
                 for (int i = 0; i < max_appoinments; i++) {
-                    if (appointments[patient_id - 1][i][0] != "0") {
-                        // If appointment exists
-                        cout << "Date: " << appointments[patient_id - 1][i][0]
-                             << ", Time: " << appointments[patient_id - 1][i][1]
-                             << ", Treatment: " << appointments[patient_id - 1][i][2] << endl;
-                        has_appointments = true;
+                    if (appointments[patient_id - 1][i][0] == "0") { // Find an empty appointment slot
+                        cout << "Enter appointment date (DD/MM/YYYY): ";
+                        getline(cin, appointments[patient_id - 1][i][0]); // Store appointment date
+                        
+                        cout << "Enter appointment time (HH:MM): ";
+                        getline(cin, appointments[patient_id - 1][i][1]); // Store appointment time
+
+                        cout << "Enter treatment: ";
+                        getline(cin, appointments[patient_id - 1][i][2]); // Store treatment info
+
+                        // Appointment successfully added
+                        cout << "Appointment added successfully.\n";
+                        appointment_added = true;
+                        break;
                     }
                 }
 
+                // If no available appointment slots are found
+                if (!appointment_added) {
+                    cout << "No available slots for this patient.\n";
+                }
+                break;
+            }
+
+            case 3: {
+                // Display patient details, including their appointments
+                cout << "Enter Patient ID to Display Details: ";
+                cin >> patient_id;  // Get patient ID
+                cin.ignore();  // To consume the newline character left by cin
+
+                // Validate patient ID to ensure it exists
+                if (patient_id < 1 || patient_id >= unique_id) {
+                    cout << "Invalid Patient ID.\n";
+                    break;
+                }
+
+                // Display patient information
+                cout << "\n*** Patient Details ***\n";
+                cout << "Patient ID: " << patient_id << endl;
+                cout << "Name: " << patients[patient_id - 1][1] << endl;
+                cout << "Age: " << patients[patient_id - 1][2] << endl;
+                cout << "Gender: " << patients[patient_id - 1][3] << endl;
+                cout << "Address: " << patients[patient_id - 1][4] << endl;
+
+                // Display the patient's appointments, if any
+                cout << "\n*** Appointments ***\n";
+                bool has_appointments = false;
+                for (int i = 0; i < max_appoinments; i++) {
+                    if (appointments[patient_id - 1][i][0] != "0") { // If appointment exists
+                        has_appointments = true;
+                        cout << "Appointment " << i + 1 << ": " << endl;
+                        cout << "Date: " << appointments[patient_id - 1][i][0] << endl;
+                        cout << "Time: " << appointments[patient_id - 1][i][1] << endl;
+                        cout << "Treatment: " << appointments[patient_id - 1][i][2] << endl;
+                        cout << endl;
+                    }
+                }
+
+                // If no appointments are found for the patient
                 if (!has_appointments) {
                     cout << "No appointments scheduled for this patient.\n";
                 }
 
                 break;
             }
-             case 3: {  // Display Patient Details
-                    cout << "Enter Patient ID to Display Details: ";
-                    cin >> patientId;
-                    cin.ignore();
-                    
-                    if (patientId < 1 || patientId >= uniqueId) {
-                        cout << "Invalid Patient ID.\n";
-                        break;
-                    }
-                    
-                    cout << "\n*** Patient Details ***\n";
-                    cout << "Patient ID: " << patientId << endl;
-                    cout << "Name: " << patients[patientId - 1][1] << endl;
-                    cout << "Age: " << patients[patientId - 1][2] << endl;
-                    cout << "Gender: " << patients[patientId - 1][3] << endl;
-                    cout << "Address: " << patients[patientId - 1][4] << endl;
-    
-                    cout << "\n*** Appointments ***\n";
-                    bool has_appointments = false;
-                    for (int i = 0; i < max_appoinments; i++) {
-                        if (appointments[patientId - 1][i][0] != "0") {
-                            has_appointments = true;
-                            cout << "Appointment " << i + 1 << ": " << endl;
-                            cout << "Date: " << appointments[patientId - 1][i][0] << endl;
-                            cout << "Time: " << appointments[patientId - 1][i][1] << endl;
-                            cout << "Treatment: " << appointments[patientId - 1][i][2] << endl;
-                            cout << endl;
-                        }
-                    }
-                    if (!has_appointments) {
-                        cout << "No appointments scheduled for this patient.\n";
-                    }
-    
-                    break;
-                }
-    
-                case 4: {  // Exit
-                    cout << "Exiting Healthcare Management System...\n";
-                    return 0;  // Exits the program
-                }
-            
+
+            case 4: {
+                // Exit the program
+                cout << "Exiting Healthcare Management System...\n";
+                return 0;  // Exit the program
+            }
+
             default:
+                // Handle invalid menu choices
                 cout << "Invalid choice. Please try again.\n";
         }
     }
 
-    return 0;
+    return 0;  // End of the program
 }
+
 
   
   // Nathan
