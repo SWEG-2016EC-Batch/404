@@ -137,10 +137,22 @@ int main() {
             }
 
             case 4: {
-                // Exit the program
-                cout << "Exiting Healthcare Management System...\n";
-                return 0;  // Exit the program
-            }
+                
+                // Ask user for confirmation before exiting
+                char confirm_exit;
+                cout << "Are you sure you want to exit? (Y/N): ";
+                cin >> confirm_exit;
+                cin.ignore();  // To consume the newline character left by cin
+            
+                // Check if the user entered 'Y' or 'N'
+                if (confirm_exit == 'Y' || confirm_exit == 'y') {
+                    cout << "Exiting Healthcare Management System...\n";
+                    return 0;  // Exit the program with return 0
+                } else {
+                    cout << "Returning to the main menu...\n";
+                }
+                break;
+}
 
             default:
                 // Handle invalid menu choices
