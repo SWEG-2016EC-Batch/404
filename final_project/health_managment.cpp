@@ -122,16 +122,21 @@ int main() {
                     }
                 }
 
-                while (true) {
+               while (true) {
                     cout << "Please enter the patient's address: " << endl;
                     getline(cin, address); // Get patient's address
-
+        
                     patients[unique_id - 1][4] = address; // Store address in patients array
-
+        
                     if (address.empty()) { // Check if address is empty
                         cout << "This section can't be empty!" << endl;
                         continue; // Prompt again for address input
-                    } else {
+                    } 
+                    else if( !isalpha (address[0] ) ) {
+                        cout<<"Please choose an address that exisits."<<endl;
+                        continue;
+                    }
+                        else {
                         break; // Exit loop after valid input
                     }
                 }
