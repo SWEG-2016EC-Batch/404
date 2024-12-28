@@ -139,15 +139,25 @@ int main() {
                 while (true) {
                     cout << "Please enter what treatment the patient is having: " << endl;
                     getline(cin, type_of_treatment); // Get type of treatment
-
+                    bool valid = true;
+                    
                     patients[unique_id - 1][5] = type_of_treatment; // Store treatment in patients array
-
+        
                     if (type_of_treatment.empty()) { // Check if treatment input is empty
                         cout << "This section can't be empty!" << endl;
+                        valid = false;
                         continue; // Prompt again for treatment input
-                    } else {
-                        break; // Exit loop after valid input
+                        
                     }
+                    else if( !isalpha (type_of_treatment[0] )  || !isalpha ( type_of_treatment[1] ) || !isalpha (type_of_treatment[2] ) ){
+                        cout<<"Please enter a currently existing treatment!"<<endl;
+                        valid = false;
+                        continue;
+                    }
+                    
+                        if(valid){
+                            break; // Exit loop after valid input
+                        }
                 }
 
 
