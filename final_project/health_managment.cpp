@@ -5,7 +5,7 @@ using namespace std;
 int main() {
     // Declare constants for the maximum number of patients and appointments
     const int max_patient = 100; 
-    const int max_appoinments = 5;
+    const int max_appoinments = 10;
 
     // Initialize patient and appointment tracking variables
     int unique_id = 1;
