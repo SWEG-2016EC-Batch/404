@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <cctype>
 using namespace std;
 
 int main() {
@@ -18,6 +19,9 @@ int main() {
     
     int choice; 
     int patient_id; 
+    string name, Gender, address, type_of_treatment;
+    int age, months;
+    char gender;
 
     while (true) {
         cout << "\n*** HEALTHCARE MANAGEMENT SYSTEM ***\n\n";
@@ -30,22 +34,120 @@ int main() {
         cin.ignore();  // To consume the newline character left by cin
 
         // Handle user input based on their menu choice
-        switch (choice) {
+         switch (choice) {
             case 1: {
                 // Add a new patient
-                cout << "Enter Patient Full Name: ";
-                getline(cin, patients[unique_id - 1][1]); // Store patient name
-                
-                cout << "Enter Patient Age: ";
-                getline(cin, patients[unique_id - 1][2]); // Store patient age
-                
-                cout << "Enter Patient Gender: ";
-                getline(cin, patients[unique_id - 1][3]); // Store patient gender
-                
-                cout << "Enter Patient Address: ";
-                getline(cin, patients[unique_id - 1][4]); // Store patient address
+                while (true) {
+                    cout << "Please enter the patient's Full name: " << endl;
+                    getline(cin, name); // Get patient's full name
 
-                // Initialize appointments to "0" indicating no appointment yet
+                    patients[unique_id - 1][1] = name; // Store name in patients array
+
+                    bool valid = true; // Flag for name validation
+
+                    for (char c : name ) {
+                        if (!isalpha(c) && c != ' ') { // Check if the name contains only alphabets and spaces
+                            cout << "A name can only contain alphabets and space betwen your first and last name!" << endl;
+                            valid = false; // Set valid flag to false if invalid character found
+
+                            continue;
+                        }
+                    }
+
+                    if (name.empty()) { // Check if name is empty
+                        cout << "This section can't be empty!" << endl;
+                        valid = false; // Set valid flag to false if empty
+                        continue;
+                    }
+
+                    if (valid) { // If name is valid, break out of the loop
+                        break;
+                    }
+                }
+
+                while (true) {
+                    cout << "Enter the patient's age (if the patient hasn't reached the age of 1 please enter 0): " << endl;
+                    cin >> age; // Get patient's age
+
+                    if (cin.fail() || age < 0 || age > 120) { // Validate age range
+                        cout << "This doesn't seem a valid age, please enter an acceptable value!\n " << endl;
+                        cin.clear();
+                        cin.ignore();
+                        continue; // Prompt again for valid age
+                    } else if (age == 0) { // If age is 0, ask for months
+                        cout << "How many months old is the infant: " << endl;
+                        cin >> months; // Get number of months
+
+                        if (months < 1 || months > 11) { // Validate months range
+                            cout << "Please enter a valid month! " << endl;
+                            cin.clear();
+                            cin.ignore();
+                            continue; // Prompt again for valid month
+                        }
+
+                        age = months; // Set age to months for infants
+                        break; // Exit the loop after valid input
+                    } else {
+                        break; // Exit the loop for valid age input
+                    }
+                }
+
+                patients[unique_id - 1][2] = to_string(age); // Store age in patients array
+                cin.ignore(); // Ignore newline character
+
+                while (true) {
+                    cout << "Please enter the patient's Gender ('M' or 'F'): " << endl;
+                    getline(cin, Gender); // Get gender input
+
+                    if (Gender.empty()) { // Check if gender input is empty
+                        cout << "This section can't be empty: " << endl;
+                        continue; // Prompt again for gender input
+                    } else if (!Gender.empty()) {
+                        gender = Gender[0]; // Get first character of gender input
+
+                        if (islower(gender)) { // Convert lowercase to uppercase
+                            gender = toupper(gender);
+                        }
+
+                        if (gender != 'M' && gender != 'F' || Gender.length() > 1) { // Validate gender input
+                            cout << "That is not a valid gender!" << endl;
+                            continue; // Prompt again for valid gender input
+                        }
+
+                        patients[unique_id - 1][3] = gender; // Store gender in patients array
+                        break; // Exit loop after valid input
+                    }
+                }
+
+                while (true) {
+                    cout << "Please enter the patient's address: " << endl;
+                    getline(cin, address); // Get patient's address
+
+                    patients[unique_id - 1][4] = address; // Store address in patients array
+
+                    if (address.empty()) { // Check if address is empty
+                        cout << "This section can't be empty!" << endl;
+                        continue; // Prompt again for address input
+                    } else {
+                        break; // Exit loop after valid input
+                    }
+                }
+
+                while (true) {
+                    cout << "Please enter what treatment the patient is having: " << endl;
+                    getline(cin, type_of_treatment); // Get type of treatment
+
+                    patients[unique_id - 1][5] = type_of_treatment; // Store treatment in patients array
+
+                    if (type_of_treatment.empty()) { // Check if treatment input is empty
+                        cout << "This section can't be empty!" << endl;
+                        continue; // Prompt again for treatment input
+                    } else {
+                        break; // Exit loop after valid input
+                    }
+                }
+
+
                 for (int i = 0; i < max_appoinments; i++) {
                     appointments[unique_id - 1][i][0] = "0"; // Date
                     appointments[unique_id - 1][i][1] = "0"; // Time
@@ -116,7 +218,7 @@ int main() {
                 cout << "Age: " << patients[patient_id - 1][2] << endl;
                 cout << "Gender: " << patients[patient_id - 1][3] << endl;
                 cout << "Address: " << patients[patient_id - 1][4] << endl;
-
+                cout << "Treatment: " <<patients[patient_id - 1][5] << endl;
                 // Display the patient's appointments, if any
                 cout << "\n*** Appointments ***\n";
                 bool has_appointments = false;
