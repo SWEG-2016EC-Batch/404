@@ -20,7 +20,7 @@ int main() {
     int choice; 
     int patient_id; 
     string name, Gender, address, type_of_treatment;
-    int age,original_age months;
+    int age,original_age,months;
     char gender;
 
     while (true) {
