@@ -194,9 +194,40 @@ int main() {
                 bool appointment_added = false;
                 for (int i = 0; i < max_appoinments; i++) {
                     if (appointments[patient_id - 1][i][0] == "0") { // Find an empty appointment slot
-                        cout << "Enter appointment date (DD/MM/YYYY): ";
-                        getline(cin, appointments[patient_id - 1][i][0]); // Store appointment date
-                        
+                       int day, month;
+
+                // Store appointment date
+                cout << "Enter appointment date (DD/MM/YYYY): ";
+                getline(cin, appointments[patient_id - 1][i][0]); // Read the input date
+                
+                // Check if the input length is 10 characters and slashes are in the right places
+                if (appointments[patient_id - 1][i][0].length() != 10 || appointments[patient_id - 1][i][0][2] != '/' || appointments[patient_id - 1][i][0][5] != '/') {
+                    cout << "Invalid format. Date must be in the format DD/MM/YYYY." << endl; // Inform about invalid format
+                    return 1; // Exit if slashes are misplaced
+                }
+                
+                // Convert day and month from string to integers
+                day = (appointments[patient_id - 1][i][0][0] - '0') * 10 + (appointments[patient_id - 1][i][0][1] - '0'); // Get day
+                month = (appointments[patient_id - 1][i][0][3] - '0') * 10 + (appointments[patient_id - 1][i][0][4] - '0'); // Get month
+                
+                // Check if day and month are valid
+                if (day <= 0 || day > 31 || month <= 0 || month > 12) {
+                    cout << "Please choose a valid date or/and month!" << endl; // Inform about invalid date/month
+                    return 1; // Exit if invalid
+                }
+                
+                // Check each character for digits, skipping slashes
+                for (int j = 0; j < appointments[patient_id - 1][i][0].length(); j++) {
+                    if (j == 2 || j == 5) {
+                        continue; // Skip slashes
+                    }
+                    // Ensure each character is a digit
+                    if (!isdigit(appointments[patient_id - 1][i][0][j])) {
+                        cout << "A date can only have numbers and slashes!" << endl; // Inform about invalid characters
+                        return 1; // Exit if any character is not a digit
+                    }
+                }
+                                        
                         cout << "Enter appointment time (HH:MM): ";
                         getline(cin, appointments[patient_id - 1][i][1]); // Store appointment time
 
