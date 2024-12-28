@@ -9,10 +9,13 @@ int main() {
 
     // Initialize patient and appointment tracking variables
     int unique_id = 1;
+    
     // 2D array to store patient info: [ID][Name][Age][Gender][Address][Appointments]
     string patients[max_patient][6]; 
+    
     // 3D array for appointments: [Patient ID][Appointment Index][Date, Time, Treatment]
     string appointments[max_patient][max_appoinments][3]; 
+    
     int choice; 
     int patient_id; 
 
@@ -36,13 +39,13 @@ int main() {
                 cout << "Enter Patient Age: ";
                 getline(cin, patients[unique_id - 1][2]); // Store patient age
                 
-                cout << "Enter Patient Gender (M / F): ";
+                cout << "Enter Patient Gender: ";
                 getline(cin, patients[unique_id - 1][3]); // Store patient gender
                 
                 cout << "Enter Patient Address: ";
                 getline(cin, patients[unique_id - 1][4]); // Store patient address
 
-                // Initialize appointments to "0" indicating no appointment
+                // Initialize appointments to "0" indicating no appointment yet
                 for (int i = 0; i < max_appoinments; i++) {
                     appointments[unique_id - 1][i][0] = "0"; // Date
                     appointments[unique_id - 1][i][1] = "0"; // Time
@@ -58,7 +61,7 @@ int main() {
             case 2: {
                 // Add an appointment for an existing patient
                 cout << "Enter patient ID to add appointment: ";
-                cin >> patient_id;  // Get patient ID for appointment
+                cin >> patient_id;
                 cin.ignore();  // To consume the newline character left by cin
 
                 // Validate patient ID to ensure it exists
@@ -95,7 +98,7 @@ int main() {
             }
 
             case 3: {
-                // Display patient details, including their appointments
+                // Display patient details
                 cout << "Enter Patient ID to Display Details: ";
                 cin >> patient_id;  // Get patient ID
                 cin.ignore();  // To consume the newline character left by cin
@@ -106,7 +109,7 @@ int main() {
                     break;
                 }
 
-                // Display patient information
+                // Display patient information, if any
                 cout << "\n*** Patient Details ***\n";
                 cout << "Patient ID: " << patient_id << endl;
                 cout << "Name: " << patients[patient_id - 1][1] << endl;
@@ -148,8 +151,10 @@ int main() {
                 if (confirm_exit == 'Y' || confirm_exit == 'y') {
                     cout << "Exiting Healthcare Management System...\n";
                     return 0;  // Exit the program with return 0
-                } else {
+                } elif ((confirm_exit == 'N' || confirm_exit == 'n'))  {
                     cout << "Returning to the main menu...\n";
+                } else {
+                    cout << "please enter Y or N" << endl;
                 }
                 break;
 }
