@@ -20,7 +20,7 @@ int main() {
     int choice; 
     int patient_id; 
     string name, Gender, address, type_of_treatment;
-    int age, months;
+    int age,original_age months;
     char gender;
 
     while (true) {
@@ -68,7 +68,8 @@ int main() {
                 while (true) {
                     cout << "Enter the patient's age (if the patient hasn't reached the age of 1 please enter 0): " << endl;
                     cin >> age; // Get patient's age
-
+                    original_age = age;
+                    
                     if (cin.fail() || age < 0 || age > 120) { // Validate age range
                         cout << "This doesn't seem a valid age, please enter an acceptable value!\n " << endl;
                         cin.clear();
@@ -85,9 +86,11 @@ int main() {
                             continue; // Prompt again for valid month
                         }
 
-                        age = months; // Set age to months for infants
+                         // Set age to months for infants
+                         patients[unique_id - 1][2] = to_string(months);
                         break; // Exit the loop after valid input
                     } else {
+                         patients[unique_id - 1][2] = to_string(age);
                         break; // Exit the loop for valid age input
                     }
                 }
@@ -215,7 +218,12 @@ int main() {
                 cout << "\n*** Patient Details ***\n";
                 cout << "Patient ID: " << patient_id << endl;
                 cout << "Name: " << patients[patient_id - 1][1] << endl;
-                cout << "Age: " << patients[patient_id - 1][2] << endl;
+                if (original_age == 0){
+                    cout << "Age: " << patients[patient_id - 1][2] <<"months old."<< endl;
+                }
+                else {
+                     cout << "Age: " << patients[patient_id - 1][2] << endl;
+                }
                 cout << "Gender: " << patients[patient_id - 1][3] << endl;
                 cout << "Address: " << patients[patient_id - 1][4] << endl;
                 cout << "Treatment: " <<patients[patient_id - 1][5] << endl;
