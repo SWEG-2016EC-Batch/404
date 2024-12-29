@@ -27,8 +27,9 @@ int main() {
         cout << "\n*** HEALTHCARE MANAGEMENT SYSTEM ***\n\n";
         cout << "Press 1 To Add Patient\n";
         cout << "Press 2 To Add Appointment\n";
-        cout << "Press 3 To Display Patient Details\n";
-        cout << "Press 4 To Exit\n\n";
+        cout << "Press 3 To Reschedule Your Appointment\n";
+        cout << "Press 4 To Display Patient Details\n";
+        cout << "Press 5 To Exit\n\n";
         cout << "Enter your choice: ";
         cin >> choice;  // Get user input for menu choice
         cin.ignore();// To consume the newline character left by cin
@@ -358,8 +359,136 @@ int main() {
                     }
                     break;
                 }
-
             case 3: {
+             // Appointment rescheduling
+            // Identifying type of patient (existing or new)
+            for (int reps = 0; reps < 3; reps++) {
+        // Prompt user to enter patient ID for identification and processing
+                cout << "Enter patient ID (press 0 if you don't remember your ID): ";
+                cin >> patient_id;
+                bool id_found=false;
+            // Checking for validity of input
+                if (cin.fail() || patient_id < 0 || patient_id >= unique_id) {
+                    cout << "Invalid patient ID\n";
+                    cin.clear();
+                    cin.ignore(); // Clear input buffer
+
+                if (reps == 2) { // Number of trials exceeded
+                    cout << "Too many invalid attempts.\n";
+                    return 1;
+                }
+                continue;
+                }// rescheduling appointment if ID is found 
+                for (int i=0;i<max_patient;i++){
+                    for (int j=0;j<max_appoinments;j++){     
+                        if (to_string(patient_id)==patients[i][0]){
+                            cout<<"Welcome,"<<patients[i][1] <<" Let's reschedule your appointment";
+                            // rescheduling the appointment 
+                            cout<<"Provide your current appointment date(DD/MM/YYYY): ";
+                            string(day);
+                            cin>>day;
+                            cout<<"provide your current appointment time in hours and minutes: ";
+                            cin>>hours>> minutes;
+                            string(hours);
+                            string(minutes);
+                            hours= hours+ ":"+ minutes;
+                            if ((day==appointments[i][j][0]) && hours==appointments[i][j][1] ){
+                                cout<<"appointment found"<<endl;
+                                cout<<"enter a new date for rescheduling(DD/MM/YYYY): ";
+                                cin>>day;
+                                cout<<"enter a new time for rescheduling(HH:MM): ";
+                                cin>>hours>>minutes;
+                                hours= hours+ ":"+ minutes;
+
+                         if (day!=appointments[i][j][0] && hours!=appointments[i][j][1]){
+                            bool slot_found=false;
+                            for(int k=0;k<max_appoinments;k++){
+                                if (appointments[i][k][0] == "0"){
+                                    appointments[i][k][0]=day;
+                                    appointments[i][k][1]=hours;
+                                    cout<<"Appointment rescheduled successfully for "<<day<<" and "<<hours <<endl;
+                                    break;
+
+                                }   
+                            }
+                            if (!slot_found){
+                                cout<<"No available slots for this patient"<<endl;
+                            }
+                        } else {
+                            cout<<"Appointment not found"<<endl;
+                            }
+                    }
+                    id_found=true;
+                }
+            }
+        }       
+
+        // Receiving patient's full name as an alternative for identification
+        if (patient_id == 0) {
+            cin.ignore(); // Clear input buffer
+            cout << "Don't remember ID? Please enter the patient's full name: ";
+            getline(cin, name);
+
+            bool name_found = false;
+            for (int i = 0; i < max_patient; i++) {
+                // Check if name exists
+                if (name == patients[i][1]) {
+                    cout << "Welcome back, " << name << ". Let's reschedule your appointment.\n";
+                    // Rescheduling the appointment
+                    for (int i=0;i<max_patient;i++){
+                         for (int j=0;j<max_appoinments;j++){
+                        cout<<"Provide your current appointment date(DD/MM/YYYY): ";
+                        string(day);
+                        cin>>day;
+                        cout<<"provide your current appointment time in hours and minutes: ";
+                        cin>>hours>> minutes;
+                        string(hours);
+                        string(minutes);
+                        hours= hours+ ":"+ minutes;
+                    if ((day==appointments[i][j][0]) && hours==appointments[i][j][1] ){
+                        cout<<"appointment found"<<endl;
+                        cout<<"enter a new date for rescheduling(DD/MM/YYYY): ";
+                        cin>>day;
+                        cout<<"enter a new time for rescheduling(HH:MM): ";
+                        cin>>hours>>minutes;
+                        hours= hours+ ":"+ minutes;
+
+                         if (day!=appointments[i][j][0] && hours!=appointments[i][j][1]){
+                            bool slot_found=false;
+                            for(int k=0;k<max_appoinments;k++){
+                                if (appointments[i][k][0] == "0"){
+                                    appointments[i][k][0]=day;
+                                    appointments[i][k][1]=hours;
+                                    cout<<"Appointment rescheduled successfully for "<<day<<" and "<<hours <<endl;
+                                    break;
+
+                                }   
+                            }
+                            if (!slot_found){
+                                cout<<"No available slots for this patient"<<endl;
+                            }
+                        } else {
+                            cout<<"Appointment not found"<<endl;
+                        }
+                    }
+                    id_found=true;
+                }
+            }
+                    name_found = true;
+                    break;
+                }
+            }
+            if (!name_found) {
+                cout << "Name NOT found! Please register to continue.\n";
+                goto a;
+            } else {
+                break; // Exit the outer loop if name is found
+            }
+        }
+    }
+    break;
+}
+            case 4: {
                 // Display patient details
                 for (int reps = 0; reps < 3; reps++) {
     // Prompt user to enter patient ID to display details
@@ -420,7 +549,7 @@ int main() {
                 break;
             }
 
-            case 4: {
+            case 5: {
                 
                 // Ask user for confirmation before exiting
                 char confirm_exit;
