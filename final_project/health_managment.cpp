@@ -215,13 +215,14 @@ int main() {
 
                 // Output confirmation of patient addition
                 cout << "Patient added with ID: " << unique_id << endl;
+                patients[unique_id-1][0]=to_string(unique_id);
                 unique_id++;  // Increment to the next unique ID
                 break;
             }
 
             case 2: {
                 // Add an appointment for an existing patient
-                  for (int reps = 0; reps < 3; reps++) {
+                b:for (int reps = 0; reps < 3; reps++) {
                         // Prompt user to enter patient ID for adding an appointment
                         cout << "Enter patient ID to add appointment: ";
                         cin >> patient_id;
@@ -399,33 +400,49 @@ int main() {
                     }
                     break;
                 }
-            case 3: {
-             // Appointment rescheduling
-            // Identifying type of patient (existing or new)
-            for (int reps = 0; reps < 3; reps++) {
-            // Prompt user to enter patient ID for identification and processing
-                cout << "Enter patient ID (press 0 if you don't remember your ID): ";
-                cin >> patient_id;
+        
+            case 3:{
+            // reschduling appointment 
+                // identifying the type of patient 
+                for (int reps=0;reps<3;reps++){
+                    // prompt the user to enter id number
+                    cout<< "Enter patient ID (Don't remember? enter 0 )";
+                    cin>>patient_id;
+                    // checking if input is valid 
+                    if (cin.fail()|| patient_id<0 || patient_id>=unique_id){
+                        cout<<"Invalid ID";
+                        cin.clear();
+                        cin.ignore();
+                    }else{
+                        cout<<"valid ID input"<<endl;
+                        break;
+                    }
+                    if (reps==2){
+                        cout<<"Too many invalid attemps";
+                        return 1;
+                    }
+                    continue;
+                } 
                 bool id_found=false;
-            // Checking for validity of input
-                if (cin.fail() || patient_id < 0 || patient_id >= unique_id) {
-                    cout << "Invalid patient ID\n";
-                    cin.clear();
-                    cin.ignore(); // Clear input buffer
-
-                if (reps == 2) { // Number of trials exceeded
-                    cout << "Too many invalid attempts.\n";
-                    return 1;
+                //identifying patient from others by looking for it's ID
+                for(int i=0;i<max_patient;i++){
+                     cout<<patients[i][0];
+                    //cout << "Comparing " << to_string(patient_id) << " with " << patients[i][0] << endl;
+                    if (to_string(patient_id)==patients[i][0]){
+                        //cout<<patients[i][0];
+                       // cout << "Comparing " << to_string(patient_id) << " with " << patients[i][0] << endl;
+                        cout<<"Welcome back, "<<patients[i][1] <<" let's reschedule your appointment"<<endl;
+                        id_found=true;
+                        break;
+                    } 
                 }
-                continue;
-                }// rescheduling appointment if ID is found
-                for (int i=0;i<max_patient;i++){
-                    for (int j=0;j<max_appoinments;j++){
-                        if (to_string(patient_id)==patients[i][0]){
-                          cout<<"Welcome,"<<patients[i][1] <<" Let's reschedule your appointment";
-                            // rescheduling the appointment
-                            cout<<"Provide your current appointment date(DD/MM/YYYY): ";
-                            string(day);
+                if (id_found){
+                    // rescheduling the appointment 
+                    // checking if appointment exists
+                    int year;
+                    for(int reps=0;reps<3;reps++){
+                    cout<<"Please enter your current appointment date (DD/MM/YYYY): ";
+                    string (day);
 
                         getline (cin, day); // Read the input date
                         bool valid = true;
@@ -440,7 +457,6 @@ int main() {
                             valid = false;
                             continue; // Loop again if slashes are misplaced
                         }
-
                         // Convert day and month from string to integers
                         int day2 = (day[0] - '0') * 10 + (day[1] - '0'); // Get day
                         int month2 = (day[3] - '0') * 10 + (day[4] - '0'); // Get month
@@ -455,8 +471,7 @@ int main() {
                             valid = false;
                             continue; // Exit if invalid
                         }
-
-                        // Check each character for digits, skipping slashes
+                               // Check each character for digits, skipping slashes
                     for (int j = 0; j < day.length(); j++) {
                             if (j == 2 || j == 5) {
                                 continue; // Skip slashes
@@ -474,385 +489,148 @@ int main() {
                         }
                         if (valid) {
                             break;
-                        }
-                              cout<<"provide your current appointment time in 24 hour format(HH:MM): ";
-                         string(hours);
-
-                        getline(cin, hours);
-
-                        // Store appointment time
-                         valid = true;
-
-                        // Check if the time format is correct
-                        if (hours[2] != ':' || hours.length() != 5) {
-                            cout << "Invalid format. Time must be in the format HH:MM" << endl; // Inform about invalid format
-                            if (reps == 2) {
-                                cout << "Too many invalid attempts, session terminated." << endl;
-                                return 1;
-                            }
-                            valid = false;
-                            continue; // Loop again if format is wrong
-                        }
-
-                        // Convert hours and minutes from string to integers
-                        int hours1 = (hours[0] - '0') * 10 + (hours[1] - '0'); // Get hours
-                        int minutes1 = (hours[3] - '0') * 10 + (hours[4] - '0'); // Get minutes
-
-                        // Check if hours and minutes are valid
-                        if (hours1 < 0 || hours1 > 23 || minutes1 < 0 || minutes1 > 59) {
-                            cout << "Please choose a valid hour or/and minute!" << endl; // Inform about invalid hour/minute
-                            if (reps == 2) {
-                                cout << "Too many invalid attempts, session terminated." << endl;
-                                return 1;
-                            }
-                            valid = false;
-                            continue; // Loop again if invalid
-                        }
-
-                        // Validate each character for digits, skipping the colon
-                    for (int j = 0; j < hours.length(); j++) {
-                            if (j == 2) {
-                                continue; // Skip the colon
-                            }
-                            // Ensure each character is a digit
-                            if (!isdigit(hours[j])) {
-                                cout << "A time can only have numbers and a colon!" << endl; // Inform about invalid characters
-                                if (reps == 2) {
-                                    cout << "Too many invalid attempts, session terminated." << endl;
-                                    return 1;
-                                }
-                                valid = false;
-                                continue; // Exit if any character is not a digit
-                            }
-                        }
-                        if (valid) {
-                            break;
-                        }
-                            if ((day==appointments[i][j][0]) && hours==appointments[i][j][1] ){
-                                cout<<"appointment found"<<endl;
-                                cout<<"enter a new date for rescheduling(DD/MM/YYYY): ";
-                                cin>>day;
-                                cout<<"enter a new time for rescheduling(HH:MM): ";
-                                cin>>hours>>minutes;
-
-
-                         if (day!=appointments[i][j][0] && hours!=appointments[i][j][1]){
-                            bool slot_found=false;
-                            for(int k=0;k<max_appoinments;k++){
-                                if (appointments[i][k][0] == "0"){
-                                    appointments[i][k][0]=day;
-                                    appointments[i][k][1]=hours;
-                                    cout<<"Appointment rescheduled successfully for "<<day<<" and "<<hours <<endl;
-                                    break;
-
-                                }
-                            }
-                            if (!slot_found){
-                                cout<<"No available slots for this patient"<<endl;
-                            }
-                        } else {
-                            cout<<"Appointment not found"<<endl;
-                            }
-                    }
-                    id_found=true;
-                }
-            }
-        }
-
-        // Receiving patient's full name as an alternative for identification
-                if (patient_id == 0) {
-                    cin.ignore(); // Clear input buffer
-                    for(int reps = 0; reps < 3; reps++){
-                    cout << "Don't remember ID? Please enter the patient's full name: ";
-                    getline(cin, name);
-                                        bool valid = true; // Flag for name validation
-
-               for (char c : name ) {
-                        if (!isalpha(c) && c != ' ') { // Check if the name contains only alphabets and spaces
-                            cout << "A name can only contain alphabets and space betwen your first and last name!" << endl;
-                            if (reps == 2) {
-                                    cout << "Too many invalid attempts, session terminated." << endl;
-                                    return 1;
-                                }
-                            valid = false; // Set valid flag to false if invalid character found
-
-                            continue;
-                        }
-                    }
-
-                    if (name.empty()) { // Check if name is empty
-                        cout << "This section can't be empty!" << endl;
-                        if (reps == 2) {
-                                    cout << "Too many invalid attempts, session terminated." << endl;
-                                    return 1;
-                                }
-                        valid = false; // Set valid flag to false if empty
-                        continue;
-                    }
-
-                    if (valid) { // If name is valid, break out of the loop
-                        break;
-                    }
-
-            }
-
-                    bool name_found = false;
-            for (int i = 0; i < max_patient; i++) {
-                // Check if name exists
-                if (name == patients[i][1]) {
-                    cout << "Welcome back, " << name << ". Let's reschedule your appointment.\n";
-                    // Rescheduling the appointment
-                    for (int i=0;i<max_patient;i++){
-                         for (int j=0;j<max_appoinments;j++){
-                         cout<<"Welcome,"<<patients[i][1] <<" Let's reschedule your appointment";
-                            // rescheduling the appointment
-                            cout<<"Provide your current appointment date(DD/MM/YYYY): ";
-                            string(day);
-
-                        getline (cin, day); // Read the input date
-                        bool valid = true;
-
-                        // Check if the input length is 10 characters and slashes are in the right places
-                        if (day.length() != 10 || day[2] != '/' || day[5] != '/') {
-                            cout << "Invalid format. Date must be in the format DD/MM/YYYY." << endl; // Inform about invalid format
-                            if (reps == 2) {
-                                cout << "Too many invalid attempts, session terminated." << endl;
-                                return 1;
-                            }
-                            valid = false;
-                            continue; // Loop again if slashes are misplaced
-                        }
-
-                        // Convert day and month from string to integers
-                        int day2 = (day[0] - '0') * 10 + (day[1] - '0'); // Get day
-                        int month2 = (day[3] - '0') * 10 + (day[4] - '0'); // Get month
-
-                        // Check if day and month are valid
-                        if (day2 <= 0 || day2 > 31 || month2 <= 0 || month2 > 12) {
-                            cout << "Please choose a valid date or/and month!" << endl; // Inform about invalid date/month
-                            if (reps == 2) {
-                                cout << "Too many invalid attempts, session terminated." << endl;
-                                return 1;
-                            }
-                            valid = false;
-                            continue; // Exit if invalid
-                        }
-
-                        // Check each character for digits, skipping slashes
-                    for (int j = 0; j < day.length(); j++) {
-                            if (j == 2 || j == 5) {
-                                continue; // Skip slashes
-                            }
-                            // Ensure each character is a digit
-                            if (!isdigit(day[j])) {
-                                cout << "A date can only have numbers and slashes!" << endl; // Inform about invalid characters
-                                if (reps == 2) {
-                                    cout << "Too many invalid attempts, session terminated." << endl;
-                                    return 1;
-                                }
-                                valid = false;
-                                continue; // Exit if any character is not a digit
-                            }
-                        }
-                        if (valid) {
-                            break;
-                        }
-                       cout<<"provide your current appointment time in 24 hour format(HH:MM): ";
-                         string(hours);
-
-                        getline(cin, hours);
-
-                        // Store appointment time
-                         valid = true;
-
-                        // Check if the time format is correct
-                        if (hours[2] != ':' || hours.length() != 5) {
-                            cout << "Invalid format. Time must be in the format HH:MM" << endl; // Inform about invalid format
-                            if (reps == 2) {
-                                cout << "Too many invalid attempts, session terminated." << endl;
-                                return 1;
-                            }
-                            valid = false;
-                            continue; // Loop again if format is wrong
-                        }
-
-                        // Convert hours and minutes from string to integers
-                        int hours1 = (hours[0] - '0') * 10 + (hours[1] - '0'); // Get hours
-                        int minutes1 = (hours[3] - '0') * 10 + (hours[4] - '0'); // Get minutes
-
-                        // Check if hours and minutes are valid
-                        if (hours1 < 0 || hours1 > 23 || minutes1 < 0 || minutes1 > 59) {
-                            cout << "Please choose a valid hour or/and minute!" << endl; // Inform about invalid hour/minute
-                            if (reps == 2) {
-                                cout << "Too many invalid attempts, session terminated." << endl;
-                                return 1;
-                            }
-                            valid = false;
-                            continue; // Loop again if invalid
-                        }
-
-                        // Validate each character for digits, skipping the colon
-                    for (int j = 0; j < hours.length(); j++) {
-                            if (j == 2) {
-                                continue; // Skip the colon
-                            }
-                            // Ensure each character is a digit
-                            if (!isdigit(hours[j])) {
-                                cout << "A time can only have numbers and a colon!" << endl; // Inform about invalid characters
-                                if (reps == 2) {
-                                    cout << "Too many invalid attempts, session terminated." << endl;
-                                    return 1;
-                                }
-                                valid = false;
-                                continue; // Exit if any character is not a digit
-                            }
-                        }
-                        if (valid) {
-                            break;
-                        }
-                    if ((day==appointments[i][j][0]) && hours==appointments[i][j][1] ){
-                        cout<<"appointment found"<<endl;
-                        cout<<"Enter a new date for scheduling(DD/MM/YYYY): ";
-                            string(day);
-
-                        getline (cin, day); // Read the input date
-                        bool valid = true;
-
-                        // Check if the input length is 10 characters and slashes are in the right places
-                        if (day.length() != 10 || day[2] != '/' || day[5] != '/') {
-                            cout << "Invalid format. Date must be in the format DD/MM/YYYY." << endl; // Inform about invalid format
-                            if (reps == 2) {
-                                cout << "Too many invalid attempts, session terminated." << endl;
-                                return 1;
-                            }
-                            valid = false;
-                            continue; // Loop again if slashes are misplaced
-                        }
-
-                        // Convert day and month from string to integers
-                        int day2 = (day[0] - '0') * 10 + (day[1] - '0'); // Get day
-                        int month2 = (day[3] - '0') * 10 + (day[4] - '0'); // Get month
-
-                        // Check if day and month are valid
-                        if (day2 <= 0 || day2 > 31 || month2 <= 0 || month2 > 12) {
-                            cout << "Please choose a valid date or/and month!" << endl; // Inform about invalid date/month
-                            if (reps == 2) {
-                                cout << "Too many invalid attempts, session terminated." << endl;
-                                return 1;
-                            }
-                            valid = false;
-                            continue; // Exit if invalid
-                        }
-
-                        // Check each character for digits, skipping slashes
-                    for (int j = 0; j < day.length(); j++) {
-                            if (j == 2 || j == 5) {
-                                continue; // Skip slashes
-                            }
-                            // Ensure each character is a digit
-                            if (!isdigit(day[j])) {
-                                cout << "A date can only have numbers and slashes!" << endl; // Inform about invalid characters
-                                if (reps == 2) {
-                                    cout << "Too many invalid attempts, session terminated." << endl;
-                                    return 1;
-                                }
-                                valid = false;
-                                continue; // Exit if any character is not a digit
-                            }
-                        }
-                        if (valid) {
-                            break;
-                        }
-                         cout<<"Enter a new time for scheduling(HH:MM): ";
-                         string(hours);
-
-                        getline(cin, hours);
-
-                        // Store appointment time
-                         valid = true;
-
-                        // Check if the time format is correct
-                        if (hours[2] != ':' || hours.length() != 5) {
-                            cout << "Invalid format. Time must be in the format HH:MM" << endl; // Inform about invalid format
-                            if (reps == 2) {
-                                cout << "Too many invalid attempts, session terminated." << endl;
-                                return 1;
-                            }
-                            valid = false;
-                            continue; // Loop again if format is wrong
-                        }
-
-                        // Convert hours and minutes from string to integers
-                        int hours1 = (hours[0] - '0') * 10 + (hours[1] - '0'); // Get hours
-                        int minutes1 = (hours[3] - '0') * 10 + (hours[4] - '0'); // Get minutes
-
-                        // Check if hours and minutes are valid
-                        if (hours1 < 0 || hours1 > 23 || minutes1 < 0 || minutes1 > 59) {
-                            cout << "Please choose a valid hour or/and minute!" << endl; // Inform about invalid hour/minute
-                            if (reps == 2) {
-                                cout << "Too many invalid attempts, session terminated." << endl;
-                                return 1;
-                            }
-                            valid = false;
-                            continue; // Loop again if invalid
-                        }
-
-                        // Validate each character for digits, skipping the colon
-                    for (int j = 0; j < hours.length(); j++) {
-                            if (j == 2) {
-                                continue; // Skip the colon
-                            }
-                            // Ensure each character is a digit
-                            if (!isdigit(hours[j])) {
-                                cout << "A time can only have numbers and a colon!" << endl; // Inform about invalid characters
-                                if (reps == 2) {
-                                    cout << "Too many invalid attempts, session terminated." << endl;
-                                    return 1;
-                                }
-                                valid = false;
-                                continue; // Exit if any character is not a digit
-                            }
-                        }
-                        if (valid) {
-                            break;
-                        }
-
-
-                         if (day!=appointments[i][j][0] && hours!=appointments[i][j][1]){
-                            bool slot_found=false;
-                            for(int k=0;k<max_appoinments;k++){
-                                if (appointments[i][k][0] == "0"){
-                                    appointments[i][k][0]=day;
-                                    appointments[i][k][1]=hours;
-                                    cout<<"Appointment rescheduled successfully for "<<day<<" and "<<hours <<endl;
-                                    break;
-
-                                            }
-                                        }
-                                        if (!slot_found){
-                                            cout<<"No available slots for this patient"<<endl;
-                                        }
-                                    } else {
-                                        cout<<"Appointment not found"<<endl;
-                                    }
-                                }
-                                id_found=true;
-                            }
-                        }
-                                name_found = true;
+                        }}
+                    // checking if the input date is found under appointments
+                    for (int i=0;i<max_patient ;i++){
+                            if (to_string(day)== appointments[unique_id-1][i][0]){
+                                cout<<"Appointment date found!";
+                                cout<<"Your appointment was set for "<<day <<" at "<<appointments[unique_id-1][i][1];
                                 break;
+                            }else {
+                                cout<<"Appointment not found! set an appointment to get started";
+                                goto b;
+                            }
+                        
+                    }
+                    // setting up a new appointment 
+                    for (int reps=0;reps<3;reps++){
+                    cout<<"Enter your new appointment date (DD/MM/YYYY): ";
+                            string (day);
+
+                        getline (cin, day); // Read the input date
+                        bool valid = true;
+
+                        // Check if the input length is 10 characters and slashes are in the right places
+                        if (day.length() != 10 || day[2] != '/' || day[5] != '/') {
+                            cout << "Invalid format. Date must be in the format DD/MM/YYYY." << endl; // Inform about invalid format
+                            if (reps == 2) {
+                                cout << "Too many invalid attempts, session terminated." << endl;
+                                return 1;
+                            }
+                            valid = false;
+                            continue; // Loop again if slashes are misplaced
+                        }
+                        // Convert day and month from string to integers
+                        int day2 = (day[0] - '0') * 10 + (day[1] - '0'); // Get day
+                        int month2 = (day[3] - '0') * 10 + (day[4] - '0'); // Get month
+                        int year = (day[6] - '0') * 1000 + (day[7] - '0') * 100 + (day[8] - '0') * 10 + (day[9] - '0'); // Get year
+                        // Check if day and month are valid
+                        if (day2 <= 0 || day2 > 31 || month2 <= 0 || month2 > 12) {
+                            cout << "Please choose a valid date or/and month!" << endl; // Inform about invalid date/month
+                            if (reps == 2) {
+                                cout << "Too many invalid attempts, session terminated." << endl;
+                                return 1;
+                            }
+                            valid = false;
+                            continue; // Exit if invalid
+                        }
+                               // Check each character for digits, skipping slashes
+                    for (int j = 0; j < day.length(); j++) {
+                            if (j == 2 || j == 5) {
+                                continue; // Skip slashes
+                            }
+                            // Ensure each character is a digit
+                            if (!isdigit(day[j])) {
+                                cout << "A date can only have numbers and slashes!" << endl; // Inform about invalid characters
+                                if (reps == 2) {
+                                    cout << "Too many invalid attempts, session terminated." << endl;
+                                    return 1;
+                                }
+                                valid = false;
+                                continue; // Exit if any character is not a digit
                             }
                         }
-                        if (!name_found) {
-                            cout << "Name NOT found! Please register to continue.\n";
-                             goto a;
-                        } else {
-                            break; // Exit the outer loop if name is found
+                        if (valid) {
+                            break;
+                        }
+                    cout<<"Enter your new appointment time (HH:MM): ";
+                    string(hours);
+                    getline(cin, hours);
+
+                        // Store appointment time
+                         valid = true;
+
+                        // Check if the time format is correct
+                        if (hours[2] != ':' || hours.length() != 5) {
+                            cout << "Invalid format. Time must be in the format HH:MM" << endl; // Inform about invalid format
+                            if (reps == 2) {
+                                cout << "Too many invalid attempts, session terminated." << endl;
+                                return 1;
+                            }
+                            valid = false;
+                            continue; // Loop again if format is wrong
+                        }                        // Convert hours and minutes from string to integers
+                        int hours1 = (hours[0] - '0') * 10 + (hours[1] - '0'); // Get hours
+                        int minutes1 = (hours[3] - '0') * 10 + (hours[4] - '0'); // Get minutes
+
+                        // Check if hours and minutes are valid
+                        if (hours1 < 0 || hours1 > 23 || minutes1 < 0 || minutes1 > 59) {
+                            cout << "Please choose a valid hour or/and minute!" << endl; // Inform about invalid hour/minute
+                            if (reps == 2) {
+                                cout << "Too many invalid attempts, session terminated." << endl;
+                                return 1;
+                            }
+                            valid = false;
+                            continue; // Loop again if invalid
+                        }
+                                              // Validate each character for digits, skipping the colon
+                    for (int j = 0; j < hours.length(); j++) {
+                            if (j == 2) {
+                                continue; // Skip the colon
+                            }
+                            // Ensure each character is a digit
+                            if (!isdigit(hours[j])) {
+                                cout << "A time can only have numbers and a colon!" << endl; // Inform about invalid characters
+                                if (reps == 2) {
+                                    cout << "Too many invalid attempts, session terminated." << endl;
+                                    return 1;
+                                }
+                                valid = false;
+                                continue; // Exit if any character is not a digit
+                            }
+                        }
+                        if (valid) {
+                            break;
+                        }
+                    // checking if the new time doesn't overlap with ither schedules
+                        for (int i=0;i<max_patient;i++){
+                            for (int j=0;j<max_appoinments;j++){
+                                if (hours== appointments[i][j][0] && day==appointments[i][j][0]){
+                                cout<<"Sorry the date has been reserved, select a new date and time";
+                                cin.clear();
+                                cin.ignore();
+                                } else {
+                                    cout<<"Appointment set to : "<<day<< " at "<<hours;
+                                    appointments[unique_id-1][i][0]=day;
+                                    appointments [unique_id-1][i][1]=hours;
+                                } if (reps==2){
+                                    cout<<"Too many invalid attemps";
+                                    return 1;
+                                }
+                                continue;
+                            }
                         }
                     }
+                } 
+                else {
+                cout<<"ID not found, please register to continue";
+                goto a;
                 }
                 break;
             }
+            
+
+
             case 4: {
                 // Display patient details
                 for (int reps = 0; reps < 3; reps++) {
