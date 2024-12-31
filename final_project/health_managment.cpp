@@ -11,16 +11,16 @@ int main() {
     // Initialize patient and appointment tracking variables
     int unique_id = 1;
 
-    // 3D array to store patient info: [ID][Name][Age][Gender][Address][Appointments]
+    // 2D array to store patient info: [ID][Name][Age][Gender][Address][Appointments]
     string patients[max_patient][6];
 
-    // 4D array for appointments: [Patient ID][Appointment Index][Date, Time, Treatment]
-    string appointments[max_patient][max_appoinments][3]; 
+    // 3D array for appointments: [Patient ID][Appointment Index][Date, Time, Treatment]
+    string appointments[max_patient][max_appoinments][3];
 
     int choice;
     int patient_id;
     string name, Gender, address, type_of_treatment;
-    int age,original_age,year,months, day, month,hours,minutes;
+    int age,original_age,months, day, month,hours,minutes;
     char gender;
 
     while (true) {
@@ -38,12 +38,12 @@ int main() {
          switch (choice) {
             case 1: {
                 // Add a new patient
-                a:for(int reps =0 ;reps < 3; reps++) {
+                for(int reps =0 ;reps < 3; reps++) {
                     cout << "Please enter the patient's Full name: " << endl;
                     getline(cin, name); // Get patient's full name
 
                     patients[unique_id - 1][1] = name; // Store name in patients array
-                    patients[unique_id-1][0] = to_string(unique_id); // Store ID in patients array
+
                     bool valid = true; // Flag for name validation
 
                     for (char c : name ) {
@@ -269,7 +269,7 @@ int main() {
                         // Convert day and month from string to integers
                         day = (appointments[patient_id - 1][i][0][0] - '0') * 10 + (appointments[patient_id - 1][i][0][1] - '0'); // Get day
                         month = (appointments[patient_id - 1][i][0][3] - '0') * 10 + (appointments[patient_id - 1][i][0][4] - '0'); // Get month
-                        year = (appointments[patient_id - 1][i][0][6] - '0') * 1000 + (appointments[patient_id - 1][i][0][7] - '0') * 100 + (appointments[patient_id - 1][i][0][8] - '0') * 10 + (appointments[patient_id - 1][i][0][9] - '0'); // Get year
+
                         // Check if day and month are valid
                         if (day <= 0 || day > 31 || month <= 0 || month > 12) {
                             cout << "Please choose a valid date or/and month!" << endl; // Inform about invalid date/month
@@ -444,7 +444,7 @@ int main() {
                         // Convert day and month from string to integers
                         int day2 = (day[0] - '0') * 10 + (day[1] - '0'); // Get day
                         int month2 = (day[3] - '0') * 10 + (day[4] - '0'); // Get month
-                        int year = (day[6] - '0') * 1000 + (day[7] - '0') * 100 + (day[8] - '0') * 10 + (day[9] - '0'); // Get year
+
                         // Check if day and month are valid
                         if (day2 <= 0 || day2 > 31 || month2 <= 0 || month2 > 12) {
                             cout << "Please choose a valid date or/and month!" << endl; // Inform about invalid date/month
