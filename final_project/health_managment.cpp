@@ -469,7 +469,7 @@ int main() {
                         cin.ignore();
                     }else{
                         cout<<"valid ID input"<<endl;
-                         cin.ignore();
+                    
                         break;
                     }
                     if (reps==2){
