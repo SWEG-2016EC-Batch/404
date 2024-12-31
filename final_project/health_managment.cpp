@@ -793,7 +793,6 @@ int main() {
 //    - Optionally, provide functionality to allow rescheduling for missed appointments.
 
 
-
   // Lelisa
 
   // Task 6: Daily Report Generation
