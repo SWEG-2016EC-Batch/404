@@ -408,13 +408,15 @@ int main() {
                     // prompt the user to enter id number
                     cout<< "Enter patient ID (Don't remember? enter 0 )";
                     cin>>patient_id;
+                   
                     // checking if input is valid 
                     if (cin.fail()|| patient_id<0 || patient_id>=unique_id){
-                        cout<<"Invalid ID";
+                        cout<<"Invalid ID"<<endl;
                         cin.clear();
                         cin.ignore();
                     }else{
                         cout<<"valid ID input"<<endl;
+                         cin.ignore();
                         break;
                     }
                     if (reps==2){
@@ -423,6 +425,7 @@ int main() {
                     }
                     continue;
                 } 
+                
                 bool id_found=false;
                 //identifying patient from others by looking for it's ID
                 for(int i=0;i<max_patient;i++){
