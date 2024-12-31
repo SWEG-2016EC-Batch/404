@@ -459,7 +459,7 @@ int main() {
                 // identifying the type of patient 
                 for (int reps=0;reps<3;reps++){
                     // prompt the user to enter id number
-                    cout<< "Enter patient ID (Don't remember? enter 0 )";
+                    cout<< "Enter patient ID (Don't remember? enter 0 ): ";
                     cin>>patient_id;
                    
                     // checking if input is valid 
