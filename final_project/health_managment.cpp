@@ -55,7 +55,7 @@ int main() {
                                 }
                             valid = false; // Set valid flag to false if invalid character found
 
-                            continue;
+                            break;
                         }
                     }
 
