@@ -496,11 +496,11 @@ int main() {
                     // checking if the input date is found under appointments
                     for (int i=0;i<max_patient ;i++){
                             if (to_string(day)== appointments[unique_id-1][i][0]){
-                                cout<<"Appointment date found!";
+                                cout<<"Appointment date found!"<<endl;
                                 cout<<"Your appointment was set for "<<day <<" at "<<appointments[unique_id-1][i][1];
                                 break;
                             }else {
-                                cout<<"Appointment not found! set an appointment to get started";
+                                cout<<"Appointment not found! set an appointment to get started"<<endl;
                                 goto b;
                             }
                         
