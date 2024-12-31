@@ -19,7 +19,7 @@ int main() {
 
     int choice;
     int patient_id;
-    string name, Gender, address, type_of_treatment;
+    string name, Gender, address, type_of_treatment, input_months, input_age;
     int age,original_age,year,months, day, month,hours,minutes;
     char gender;
 
@@ -75,45 +75,98 @@ int main() {
                 }
 
                 for(int reps = 0 ; reps< 3; reps++) {
-                    cout << "Enter the patient's age (if the patient hasn't reached the age of 1 please enter 0): " << endl;
-                    cin >> age; // Get patient's age
-                    original_age = age;
-
-                    if (cin.fail() || age < 0 || age > 120) { // Validate age range
-                        cout << "This doesn't seem a valid age, please enter an acceptable value!\n " << endl;
-                        if (reps == 2) {
-                                    cout << "Too many invalid attempts, session terminated." << endl;
-                                    return 1;
-                                }
-                        cin.clear();
-                        cin.ignore();
-                        continue; // Prompt again for valid age
-                    } else if (age == 0) { // If age is 0, ask for months
-                        cout << "How many months old is the infant: " << endl;
-                        cin >> months; // Get number of months
-
-                        if (months < 1 || months > 11) { // Validate months range
-                            cout << "Please enter a valid month! " << endl;
-                            if (reps == 2) {
-                                    cout << "Too many invalid attempts, session terminated." << endl;
-                                    return 1;
-                                }
-                            cin.clear();
-                            cin.ignore();
-                            continue; // Prompt again for valid month
+                   cout << "Enter the patient's age (if the patient hasn't reached the age of 1 please enter 0): " << endl;
+                    getline(cin, input_age); // Get patient's age
+                    
+                    bool valid = true; // Flag to track validity of input
+                    if (input_age.empty()) { // Check if age input is empty
+                        cout << "This section can't be empty!" << endl;
+                        if (reps == 2) { // Check if the number of invalid attempts has reached the limit
+                            cout << "Too many invalid attempts, session terminated." << endl;
+                            return 1; // Terminate session
                         }
-
-                         // Set age to months for infants
-                         patients[unique_id - 1][2] = to_string(months);
-                        break; // Exit the loop after valid input
-                    } else {
-                         patients[unique_id - 1][2] = to_string(age);
-                        break; // Exit the loop for valid age input
+                        valid = false; // Set valid flag to false if input is empty
+                        continue; // Prompt again for valid age
+                    }
+                    
+                    for (char c : input_age) { // Loop through each character in the input
+                        if (!isdigit(c)) { // Check if character is not a digit
+                            cout << "This doesn't seem a valid age, please enter an acceptable value!\n" << endl;
+                             if (reps == 2) {
+                                    cout << "Too many invalid attempts, session terminated." << endl;
+                                    return 1;
+                                }
+                            valid = false; // Set valid flag to false
+                            break; // Exit loop on invalid character
+                        }
+                    }
+                    
+                    if (valid) { // Proceed only if input is valid
+                        age = stoi(input_age); // Convert string to integer
+                    
+                        // Validate age range
+                        if (age < 0 || age > 120) { // Check for valid age range
+                            cout << "This doesn't seem a valid age, please enter an acceptable value!\n" << endl;
+                            if (reps == 2) { // Check if the number of invalid attempts has reached the limit
+                                cout << "Too many invalid attempts, session terminated." << endl;
+                                return 1; // Terminate session
+                            }
+                            cin.clear(); // Clear the error state
+                            cin.ignore(); // Ignore the rest of the line
+                            continue; // Prompt again for valid age
+                        }
+                        else if (age == 0) { // If age is 0, ask for months
+                            cout << "How many months old is the infant: " << endl;
+                            getline(cin, input_months); // Get months input
+                            if (input_months.empty()) { // Check if months input is empty
+                                cout << "This section can't be empty!" << endl;
+                                if (reps == 2) { // Check if the number of invalid attempts has reached the limit
+                                    cout << "Too many invalid attempts, session terminated." << endl;
+                                    return 1; // Terminate session
+                                }
+                                valid = false; // Set valid flag to false if input is empty
+                                continue; // Prompt again for valid months
+                            }
+                            
+                            valid = true; // Reset validity for months check
+                            for (char c : input_months) { // Loop through each character in months input
+                                if (!isdigit(c)) { // Check if character is not a digit
+                                    cout << "Please enter a valid month!" << endl;
+                                     if (reps == 2) {
+                                    cout << "Too many invalid attempts, session terminated." << endl;
+                                    return 1;
+                                }
+                                    valid = false; // Set valid flag to false
+                                    break; // Exit loop on invalid character
+                                }
+                            }
+                    
+                            if (valid) { // Proceed only if months input is valid
+                                months = stoi(input_months); // Convert string to integer
+                    
+                                // Validate months range
+                                if (months < 1 || months > 11) { // Check for valid months range
+                                    cout << "Please enter a valid month!" << endl;
+                                    if (reps == 2) { // Check if the number of invalid attempts has reached the limit
+                                        cout << "Too many invalid attempts, session terminated." << endl;
+                                        return 1; // Terminate session
+                                    }
+                                    cin.clear(); // Clear error state
+                                    cin.ignore(); // Ignore rest of line
+                                    continue; // Prompt again for valid month
+                                }
+                    
+                                // Set age to months for infants
+                                patients[unique_id - 1][2] = to_string(months); // Store months in patients array
+                                break; // Exit the loop after valid input
+                            }
+                        } else {
+                            patients[unique_id - 1][2] = to_string(age); // Store age in patients array
+                            break; // Exit the loop for valid age input
+                        }
                     }
                 }
 
-               // Store age in patients array
-                cin.ignore(); // Ignore newline character
 
                 for(int reps = 0 ; reps< 3; reps++) {
                     cout << "Please enter the patient's Gender ('M' or 'F'): " << endl;
