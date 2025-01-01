@@ -8,16 +8,27 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
+    
+    # Install necessary dependencies for autotools (if using Autotools)
+    - name: Install dependencies
+      run: sudo apt-get install -y autoconf automake
+
+    # Run the configure script
     - name: configure
       run: ./configure
+    
+    # Build the project using make
     - name: make
       run: make
+
+    # Run tests (if applicable)
     - name: make check
       run: make check
+
+    # Run distcheck (optional)
     - name: make distcheck
       run: make distcheck
