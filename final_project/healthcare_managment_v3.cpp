@@ -32,7 +32,7 @@ int main() {
         cout << "6. Display statstical data of all patients including missed appointments and other. \n";
         cout << "7. Exit - Exit the system.\n\n";
         
-        cout << "Enter your choice (1-6): ";
+        cout << "Enter your choice (1-7): ";
         cin >> choice;
         switch (choice) {
             // case to be added here
