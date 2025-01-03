@@ -33,7 +33,7 @@ int main() {
         cout << "4. Display Patient Details - View the details of an existing patient.\n";
         cout << "5. Display All Patients - View a list of all registered patients.\n";
         cout << "6. Display statstical data of all patients including missed appointments and other. \n";
-        cout << "7.daily report generation. \n";
+        cout << "7. Daily report generation. \n";
         cout << "8. Exit - Exit the system.\n\n";
 
         cout << "Enter your choice (1-8): ";
