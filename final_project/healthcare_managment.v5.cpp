@@ -8,7 +8,7 @@
 #include<cstdlib>
 using namespace std;
 
-int main() //start here
+int main(){ //start here
     const int max_patient = 100;
     const int max_appoinments = 10;
     int missed_appointments = 0;
@@ -845,92 +845,92 @@ int main() //start here
             }
 
 
-case 7:{
-//    Daily Report Generation
-
-    // Initialize counters
-    int total_appointments = 0;
-    int total_patients_with_appointments = 0;
-    int missed_appointments_for_the_day = 0;
-    string treatment_types[max_appoinments];  // To store treatment types
-    int number_of_treatments = 0;  // Count unique treatments
- // Get the current date
-    time_t now = time(0);
-    tm *localTime = localtime(&now);
-    int current_day = localTime->tm_mday;
-    int current_month = localTime->tm_mon + 1;  // month is 0-based
-    int current_year = localTime->tm_year + 1900;  // year since 1900
-    // Loop through all patients and appointments
-    for (int j = 0; j < unique_id - 1; j++) { // Loop over all registered patients (unique_id keeps track of the number of patients)
-        bool has_appointments_today = false;  // To check if this patient has any appointments today
-
-        for (int i = 0; i < max_appoinments; i++) {  // Loop through each patient's appointments
-            if (appointments[j][i][0] != "0") {  // If the patient has an appointment (non-"0" date)
-                total_appointments++;  // Increment total appointments
-
-                // Check if the patient has appointments
-                has_appointments_today = true;
-
-                // Track the treatments provided
-                string treatment = appointments[j][i][2];
-                if (treatment != "0") {
-                    // Check if this treatment is unique
-                    bool is_unique = true;
-                    for (int k = 0; k < number_of_treatments; k++) {
-                        if (treatment_types[k] == treatment) {
-                            is_unique = false;  // Treatment already counted
-                            break;
+        case 7:{
+        //    Daily Report Generation
+        
+            // Initialize counters
+            int total_appointments = 0;
+            int total_patients_with_appointments = 0;
+            int missed_appointments_for_the_day = 0;
+            string treatment_types[max_appoinments];  // To store treatment types
+            int number_of_treatments = 0;  // Count unique treatments
+         // Get the current date
+            time_t now = time(0);
+            tm *localTime = localtime(&now);
+            int current_day = localTime->tm_mday;
+            int current_month = localTime->tm_mon + 1;  // month is 0-based
+            int current_year = localTime->tm_year + 1900;  // year since 1900
+            // Loop through all patients and appointments
+            for (int j = 0; j < unique_id - 1; j++) { // Loop over all registered patients (unique_id keeps track of the number of patients)
+                bool has_appointments_today = false;  // To check if this patient has any appointments today
+        
+                for (int i = 0; i < max_appoinments; i++) {  // Loop through each patient's appointments
+                    if (appointments[j][i][0] != "0") {  // If the patient has an appointment (non-"0" date)
+                        total_appointments++;  // Increment total appointments
+        
+                        // Check if the patient has appointments
+                        has_appointments_today = true;
+        
+                        // Track the treatments provided
+                        string treatment = appointments[j][i][2];
+                        if (treatment != "0") {
+                            // Check if this treatment is unique
+                            bool is_unique = true;
+                            for (int k = 0; k < number_of_treatments; k++) {
+                                if (treatment_types[k] == treatment) {
+                                    is_unique = false;  // Treatment already counted
+                                    break;
+                                }
+                            }
+        
+                            // If treatment is unique, add it to the list
+                            if (is_unique) {
+                                treatment_types[number_of_treatments] = treatment;
+                                number_of_treatments++;
+                            }
+                        }
+        
+                        // Check for missed appointments (assuming the date format is DD/MM/YYYY)
+                        stringstream ss(appointments[j][i][0]);
+                        int day, month, year;
+                        char delimiter;
+                        ss >> day >> delimiter >> month >> delimiter >> year;
+                        if (year < current_year || (year == current_year && month < current_month)
+                            ||(year == current_year && month == current_month && day < current_day)) {
+                            missed_appointments_for_the_day++;  // Increment missed appointments counter
                         }
                     }
-
-                    // If treatment is unique, add it to the list
-                    if (is_unique) {
-                        treatment_types[number_of_treatments] = treatment;
-                        number_of_treatments++;
-                    }
                 }
-
-                // Check for missed appointments (assuming the date format is DD/MM/YYYY)
-                stringstream ss(appointments[j][i][0]);
-                int day, month, year;
-                char delimiter;
-                ss >> day >> delimiter >> month >> delimiter >> year;
-                if (year < current_year || (year == current_year && month < current_month)
-                    ||(year == current_year && month == current_month && day < current_day)) {
-                    missed_appointments_for_the_day++;  // Increment missed appointments counter
+        
+                // Track the number of patients with at least one appointment
+                if (has_appointments_today) {
+                    total_patients_with_appointments++;
                 }
             }
+        
+            // Calculate the average number of appointments per patient
+            double average_appointments_per_patient = 0;
+            if (total_patients_with_appointments > 0) {
+                average_appointments_per_patient = (double)total_appointments / total_patients_with_appointments;
+            }
+        
+            // Display the daily report
+            cout << "\n*** Daily Report ***\n";
+            cout << "Total number of appointments for the day: " << total_appointments << endl;
+            cout << "Total number of patients with appointments: " << total_patients_with_appointments << endl;
+            cout << "Total number of missed appointments: " << missed_appointments_for_the_day << endl;
+            cout << "Average number of appointments per patient: " << fixed << setprecision(2) << average_appointments_per_patient << endl;
+        
+            cout << "\n*** Treatments Provided ***\n";
+            for (int i = 0; i < number_of_treatments; i++) {
+                cout << treatment_types[i] << endl;  // Display all unique treatments
+            }
+        
+            // Wait for 3 seconds before returning to the main menu
+            cout << "\nReturning to the main menu in 3 seconds...\n";
+            Sleep(3000); // Sleep for 3 seconds
+            break;
         }
-
-        // Track the number of patients with at least one appointment
-        if (has_appointments_today) {
-            total_patients_with_appointments++;
-        }
-    }
-
-    // Calculate the average number of appointments per patient
-    double average_appointments_per_patient = 0;
-    if (total_patients_with_appointments > 0) {
-        average_appointments_per_patient = (double)total_appointments / total_patients_with_appointments;
-    }
-
-    // Display the daily report
-    cout << "\n*** Daily Report ***\n";
-    cout << "Total number of appointments for the day: " << total_appointments << endl;
-    cout << "Total number of patients with appointments: " << total_patients_with_appointments << endl;
-    cout << "Total number of missed appointments: " << missed_appointments_for_the_day << endl;
-    cout << "Average number of appointments per patient: " << fixed << setprecision(2) << average_appointments_per_patient << endl;
-
-    cout << "\n*** Treatments Provided ***\n";
-    for (int i = 0; i < number_of_treatments; i++) {
-        cout << treatment_types[i] << endl;  // Display all unique treatments
-    }
-
-    // Wait for 3 seconds before returning to the main menu
-    cout << "\nReturning to the main menu in 3 seconds...\n";
-    Sleep(3000); // Sleep for 3 seconds
-    break;
-}
                 case 8: {
                 // Exit the program
                 cout << "Exiting Healthcare Management System...\n";
