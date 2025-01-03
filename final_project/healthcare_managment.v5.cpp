@@ -8,7 +8,7 @@
 #include<cstdlib>
 using namespace std;
 
-int main() {
+int main() //start here
     const int max_patient = 100;
     const int max_appoinments = 10;
     int missed_appointments = 0;
