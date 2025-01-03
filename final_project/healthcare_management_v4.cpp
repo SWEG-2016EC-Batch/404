@@ -695,6 +695,7 @@ int main() {
                                     Sleep(3000); // Sleep for 3 seconds
                                     goto h;
                                 }
+                                continue;
 
                             }
                        break; }
