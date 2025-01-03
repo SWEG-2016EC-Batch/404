@@ -43,6 +43,8 @@ int main() {
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             continue;
         }
+
+        cin.ignore();
         switch (choice) {
             // case to be added here
                 case 1: {
@@ -53,36 +55,236 @@ int main() {
                             break;
                         }
 
-                        cin.ignore(); // to consume the newline left by previous input
+                        // to consume the newline left by previous input
                         cout << "Enter Patient Full Name: ";
                         getline(cin, patients[unique_id - 1][1]); // Store patient name
+                        string name = patients[unique_id - 1][1] ; // Store name in patients array
+
+                        bool valid = true; // Flag for name validation
+                        if (name.length() < 3) {
+                            cout<<"That doesn't seem like an existing name, Please try again."<<endl;
+                            if (reps == 2) {
+                                cout << "Too many invalid attempts, returning to main menu." << endl;
+                                Sleep(3000);
+                                goto h;  // go back to main menu
+                            }
+                            valid = false;
+                            continue;
+                        }
+                        for (char c : name ) {
+                            if (!isalpha(c) && c != ' ') { // Check if the name contains only alphabets and spaces
+                                cout << "A name can only contain alphabets and space betwen your first and last name!" << endl;
+                                if (reps == 2) {
+                                    cout << "Too many invalid attempts, returning to main menu." << endl;
+                                    Sleep(3000);
+                                    goto h;   // go back to main menu
+                                }
+                                valid = false; // Set valid flag to false if invalid character found
+
+                                break;
+                            }
+                        }
+
+                        if (name.empty()) { // Check if name is empty
+                            cout << "This section can't be empty!" << endl;
+                            if (reps == 2) {
+                                cout << "Too many invalid attempts, returning to main menu." << endl;
+                                Sleep(3000);
+                                goto h;  // go back to main menu
+                            }
+                            valid = false; // Set valid flag to false if empty
+                            continue;
+                        }
+
+                        if (valid) { // If name is valid, break out of the loop
+                            break;
+                        }
+
+
                     }
                     int age;
                     for(int reps = 0 ; reps < 3; reps++) {
                         cout << "If the patient is not 1 years old yet, please enter 0" << endl;
                         cout << "Enter Patient Age (in years): ";
-                        cin >> age;
+                        string input_age;
+                        getline(cin, input_age); // Get patient's age
+
+                    bool valid = true; // Flag to track validity of input
+                    if (input_age.empty()) { // Check if age input is empty
+                        cout << "This section can't be empty!" << endl;
+                        if (reps == 2) {
+                            cout << "Too many invalid attempts, returning to main menu." << endl;
+                            Sleep(3000);
+                            goto h;
+                        }
+                        valid = false; // Set valid flag to false if input is empty
+                        continue; // Prompt again for valid age
+                    }
+
+                    for (char c : input_age) { // Loop through each character in the input
+                        if (!isdigit(c)) { // Check if character is not a digit
+                            cout << "This doesn't seem a valid age, please enter an acceptable value!\n" << endl;
+                            if (reps == 2) {
+                                cout << "Too many invalid attempts, returning to main menu." << endl;
+                                Sleep(3000);
+                                goto h;
+                            }
+                            valid = false; // Set valid flag to false
+                            break; // Exit loop on invalid character
+                        }
+                    }
+
+                    if (valid) { // Proceed only if input is valid
+                        age = stoi(input_age); // Convert string to integer
+
+                        // Validate age range
+                        if (age < 0 || age > 120) { // Check for valid age range
+                            cout << "This doesn't seem a valid age, please enter an acceptable value!\n" << endl;
+                            if (reps == 2) {
+                                cout << "Too many invalid attempts, returning to main menu." << endl;
+                                Sleep(3000);
+                                goto h;
+                             // Terminate session
+                            }
+
+                        }
+
 
                         // Check if the age is less than 1 year (infant)
-                        if (age == 0) {
+                        else if (age == 0) {
                             int months;
                             cout << "How many months old is the infant? ";
-                            cin >> months;
-                            patients[unique_id - 1][2] = to_string(months) + " months"; // Store age in months
+                            string input_months;
+
+                            getline(cin, input_months); // Get months input
+
+                            if (input_months.empty()) { // Check if months input is empty
+                                cout << "This section can't be empty!" << endl;
+                                if (reps == 2) {
+                                    cout << "Too many invalid attempts, returning to main menu." << endl;
+                                    Sleep(3000);
+                                    goto h;
+                                    // go back to main menu
+                                }
+                                valid = false; // Set valid flag to false if input is empty
+                                continue; // Prompt again for valid months
+                            }
+
+                            valid = true; // Reset validity for months check
+                            for (char c : input_months) { // Loop through each character in months input
+                                if (!isdigit(c)) { // Check if character is not a digit
+                                    cout << "Please enter a valid month!" << endl;
+                                    if (reps == 2) {
+                                        cout << "Too many invalid attempts, returning to main menu." << endl;
+                                        Sleep(3000);
+                                        goto h;
+                                        // go back to main menu
+                                    }
+                                    valid = false; // Set valid flag to false
+                                    break; // Exit loop on invalid character
+                                }
+                            }
+
+                            if (valid) { // Proceed only if months input is valid
+                                months = stoi(input_months); // Convert string to integer
+
+                                // Validate months range
+                                if (months < 1 || months > 11) { // Check for valid months range
+                                    cout << "Please enter a valid month!" << endl;
+
+                                    if (reps == 2) {
+                                        cout << "Too many invalid attempts, returning to main menu." << endl;
+                                        Sleep(3000);
+                                        goto h;
+                                        // go back to main menu
+                                    }
+                                     // Ignore rest of line
+                                    continue; // Prompt again for valid month
+                                }
+
+                                // Set age to months for infants
+                                patients[unique_id - 1][2] = to_string(months) + " months"; // Store months in patients array
+                                break; // Exit the loop after valid input
+                            }
                         } else {
-                            patients[unique_id - 1][2] = to_string(age) + " years"; // Store age in years
+                            patients[unique_id - 1][2] = to_string(age) + " Years"; // Store age in patients array
+                            break; // Exit the loop for valid age input
                         }
+                    }
+
+
                     }
                     for(int reps = 0 ; reps < 3; reps++){
                         cout << "Enter Patient Gender (M, F): ";
-                        cin >> gender;
-                        patients[unique_id - 1][3] = toupper(gender) ; // Store patient gender
+                        string Gender;
+                        getline(cin, Gender); // Get gender input
+
+                        if (Gender.empty()) { // Check if gender input is empty
+                            cout << "This section can't be empty: " << endl;
+                            if (reps == 2) {
+                                cout << "Too many invalid attempts, returning to main menu." << endl;
+                                Sleep(3000);
+                                goto h;
+                                // go back to main menu
+                            }
+                            continue; // Prompt again for gender input
+                        } else if (!Gender.empty()) {
+                            gender = Gender[0]; // Get first character of gender input
+
+                            if (islower(gender)) { // Convert lowercase to uppercase
+                                gender = toupper(gender);
+                            }
+
+                            if (gender != 'M' && gender != 'F' || Gender.length() > 1) { // Validate gender input
+                                cout << "That is not a valid gender!" << endl;
+                                if (reps == 2) {
+                                    cout << "Too many invalid attempts, returning to main menu." << endl;
+                                    Sleep(3000);
+                                    goto h;
+                                    // go back to main menu
+                                }
+                                continue; // Prompt again for valid gender input
+                            }
+
+                            patients[unique_id - 1][3] = gender; // Store gender in patients array
+                            break; // Exit loop after valid input
+                        }
+
+
+                    // Store patient gender
 
                         cin.ignore(); // to consume the newline left by previous input
                     }
                     for(int reps = 0 ; reps < 3; reps++) {
                         cout << "Enter Patient Address: ";
-                        getline(cin, patients[unique_id - 1][4]); // Store patient address
+                        string address; // Store patient address
+                        getline(cin, address); // Get patient's address
+
+                        patients[unique_id - 1][4] = address; // Store address in patients array
+
+                        if (address.empty()) { // Check if address is empty
+                            cout << "This section can't be empty!" << endl;
+                            if (reps == 2) {
+                                cout << "Too many invalid attempts, returning to main menu." << endl;
+                                Sleep(3000);
+                                goto h;
+                                // go back to main menu
+                            }
+                            continue; // Prompt again for address input
+                        }
+                        else if( !isalpha (address[0] ) ) {
+                            cout<<"Please choose an address that exists."<<endl;
+                            if (reps == 2) {
+                                cout << "Too many invalid attempts, returning to main menu." << endl;
+                                Sleep(3000);
+                                goto h;
+                                // go back to main menu
+                            }
+                            continue;
+                        }
+                        else {
+                            break; // Exit loop after valid input
+                        }
                     }
                         // Initialize appointments to "0" indicating no appointment yet
                         for (int i = 0; i < max_appoinments; i++) {
@@ -401,8 +603,7 @@ int main() {
                         string day;
                         string original_day = day;
                         getline (cin, day);
-                        cin.clear();
-                        cin.ignore();
+
                         // Read the input date
                         bool valid = true;
 
@@ -650,7 +851,9 @@ int main() {
                 else {
                 cout<<"ID not found, please register to continue";
                 Sleep(3000); // Sleep for 3 seconds
-                goto a;
+                cin.ignore();
+                    goto a;
+
                 }
                 break;
             }
