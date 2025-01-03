@@ -970,7 +970,6 @@ int main() {
                 int current_day = localTime->tm_mday;
                 int current_month = localTime->tm_mon + 1; // month starts from - to 11
                 int current_year = localTime->tm_year + 1900; // year since 1900
-                cout << "Current Date: " << current_day << "/" << current_month << "/" << current_year << endl;
                 for(int j = 0; j < unique_id - 1; j++) {// to calulate missed appointments
                     for (int i = 0; i < max_appoinments; i++) {
                         if (appointments[j][i][0] != "0") {
@@ -1017,18 +1016,6 @@ int main() {
                     }
                 } // end of for loop for unique_id for patients
                     cout << "Total number of unique treatments: " << number_of_treatment << endl;
-                  cout << "\n*** Displaying All Registered statstical Data ***\n\n\n";
-
-                   cout
-                         << setw(5) << "Males"
-                         << setw(15) << "Females"
-                         << setw(30) << "number_of_treatment" << endl;
-
-                   cout
-                         << setw(2) << number_of_males
-                         << setw(14) << number_of_females
-                         << setw(24) <<number_of_treatment << endl;
-
                 cout << "List of unique treatments: ";
                 bool empty = true;
                 for (int i = 0; i < number_of_treatment; i++) {
