@@ -24,7 +24,8 @@ int main(){ //start here
     int patient_id;
 
     while (true) {
-        h: cout << "\n*** HEALTHCARE MANAGEMENT SYSTEM ***\n\n";
+        h: 
+        cout << "\n*** HEALTHCARE MANAGEMENT SYSTEM ***\n\n";
         cout << "Welcome to the Healthcare Management System.\n";
         cout << "Please choose an option from the following menu:\n";
         cout << "1. Add Patient - Register a new patient.\n";
@@ -35,10 +36,9 @@ int main(){ //start here
         cout << "6. Display statstical data of all patients including missed appointments and other. \n";
         cout << "7. Daily report genaration \n";
         cout << "8. Exit - Exit the system.\n\n";
-
         cout << "Enter your choice (1-8): ";
         cin >> choice;
-        if (cin.fail() || choice < 1 || choice > 7) {
+        if (cin.fail() || choice < 1 || choice > 8) {
             cout << "Please choose a valid input." << endl;
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -97,9 +97,7 @@ int main(){ //start here
                         cout << "Patient added with ID: " << unique_id << endl;
                         unique_id++;  // Increment to the next unique ID
                         break;
-
-                }
-
+                 }
             case 2: {
                 // Add an appointment for an existing patient
                 b: for(int reps = 0 ; reps < 3; reps++) {
@@ -126,9 +124,6 @@ int main(){ //start here
                         }
                     }
                     if (valid) {
-
-
-
                         // Validate patient ID to ensure it exists
                         patient_id = stoi(input_patient_id);
                         if (patient_id < 1 || patient_id > 1) {
@@ -139,8 +134,6 @@ int main(){ //start here
                                 Sleep(3000); // Sleep for 3 seconds
                                 goto h;
                             }
-
-
                         }
                         else {
                             break;
@@ -315,8 +308,6 @@ int main(){ //start here
                             } // Store treatment info
                         }
 
-
-
                         // Appointment successfully added
                         cout << "Appointment added successfully.\n";
                         appointment_added = true;
@@ -335,6 +326,7 @@ int main(){ //start here
                 break;
             }
 
+          
             case 3:{
             // reschduling appointment
                 // identifying the type of patient
@@ -837,15 +829,14 @@ int main(){ //start here
                     cout << "No treatments found.\n";
                     // Wait for 3 seconds before going back to the home page
                     cout << "Returning to the home page in 3 seconds...\n";
-                    Sleep(3000); // Sleep for 3 seconds
+                    sleep(3000); // Sleep for 3 seconds
                     goto h;
 
                 }
                 break;
             }
 
-
-        case 7:{
+      case 7:{
         //    Daily Report Generation
         
             // Initialize counters
@@ -940,7 +931,6 @@ int main(){ //start here
 
             default:
                 cout << "Invalid choice. Please try again.\n";
-
 
         }
     }
