@@ -61,16 +61,7 @@ int main() {
                         string name = patients[unique_id - 1][1] ; // Store name in patients array
 
                         bool valid = true; // Flag for name validation
-                        if (name.length() < 3) {
-                            cout<<"That doesn't seem like an existing name, Please try again."<<endl;
-                            if (reps == 2) {
-                                cout << "Too many invalid attempts, returning to main menu." << endl;
-                                Sleep(3000);
-                                goto h;  // go back to main menu
-                            }
-                            valid = false;
-                            continue;
-                        }
+                        
                         for (char c : name ) {
                             if (!isalpha(c) && c != ' ') { // Check if the name contains only alphabets and spaces
                                 cout << "A name can only contain alphabets and space betwen your first and last name!" << endl;
@@ -96,7 +87,17 @@ int main() {
                             continue;
                         }
 
-                        if (valid) { // If name is valid, break out of the loop
+                        if (valid) {
+                            if (name.length() < 3) {
+                            cout<<"That doesn't seem like an existing name, Please try again."<<endl;
+                            if (reps == 2) {
+                                cout << "Too many invalid attempts, returning to main menu." << endl;
+                                Sleep(3000);
+                                goto h;  // go back to main menu
+                            }
+                            valid = false;
+                            continue;
+                        }// If name is valid, break out of the loop
                             break;
                         }
 
