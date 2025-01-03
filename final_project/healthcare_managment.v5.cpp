@@ -8,7 +8,7 @@
 #include<cstdlib>
 using namespace std;
 
-int main(){ //start here
+int main() {
     const int max_patient = 100;
     const int max_appoinments = 10;
     int missed_appointments = 0;
@@ -24,8 +24,7 @@ int main(){ //start here
     int patient_id;
 
     while (true) {
-        h: 
-        cout << "\n*** HEALTHCARE MANAGEMENT SYSTEM ***\n\n";
+        h: cout << "\n*** HEALTHCARE MANAGEMENT SYSTEM ***\n\n";
         cout << "Welcome to the Healthcare Management System.\n";
         cout << "Please choose an option from the following menu:\n";
         cout << "1. Add Patient - Register a new patient.\n";
@@ -34,8 +33,9 @@ int main(){ //start here
         cout << "4. Display Patient Details - View the details of an existing patient.\n";
         cout << "5. Display All Patients - View a list of all registered patients.\n";
         cout << "6. Display statstical data of all patients including missed appointments and other. \n";
-        cout << "7. Daily report genaration \n";
+        cout << "7.daily report generation ";
         cout << "8. Exit - Exit the system.\n\n";
+
         cout << "Enter your choice (1-8): ";
         cin >> choice;
         if (cin.fail() || choice < 1 || choice > 8) {
@@ -44,6 +44,8 @@ int main(){ //start here
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             continue;
         }
+
+        cin.ignore();
         switch (choice) {
             // case to be added here
                 case 1: {
@@ -54,36 +56,237 @@ int main(){ //start here
                             break;
                         }
 
-                        cin.ignore(); // to consume the newline left by previous input
+                        // to consume the newline left by previous input
                         cout << "Enter Patient Full Name: ";
                         getline(cin, patients[unique_id - 1][1]); // Store patient name
+                        string name = patients[unique_id - 1][1] ; // Store name in patients array
+
+                        bool valid = true; // Flag for name validation
+
+                        for (char c : name ) {
+                            if (!isalpha(c) && c != ' ') { // Check if the name contains only alphabets and spaces
+                                cout << "A name can only contain alphabets and space betwen your first and last name!" << endl;
+                                if (reps == 2) {
+                                    cout << "Too many invalid attempts, returning to main menu." << endl;
+                                    Sleep(3000);
+                                    goto h;   // go back to main menu
+                                }
+                                valid = false; // Set valid flag to false if invalid character found
+
+                                break;
+                            }
+                        }
+
+                        if (name.empty()) { // Check if name is empty
+                            cout << "This section can't be empty!" << endl;
+                            if (reps == 2) {
+                                cout << "Too many invalid attempts, returning to main menu." << endl;
+                                Sleep(3000);
+                                goto h;  // go back to main menu
+                            }
+                            valid = false; // Set valid flag to false if empty
+                            continue;
+                        }
+
+                        if (valid) {
+                            if (name.length() < 3) {
+                            cout<<"That doesn't seem like an existing name, Please try again."<<endl;
+                            if (reps == 2) {
+                                cout << "Too many invalid attempts, returning to main menu." << endl;
+                                Sleep(3000);
+                                goto h;  // go back to main menu
+                            }
+                            valid = false;
+                            continue;
+                        }// If name is valid, break out of the loop
+                            break;
+                        }
+
+
                     }
                     int age;
                     for(int reps = 0 ; reps < 3; reps++) {
                         cout << "If the patient is not 1 years old yet, please enter 0" << endl;
                         cout << "Enter Patient Age (in years): ";
-                        cin >> age;
+                        string input_age;
+                        getline(cin, input_age); // Get patient's age
+
+                    bool valid = true; // Flag to track validity of input
+                    if (input_age.empty()) { // Check if age input is empty
+                        cout << "This section can't be empty!" << endl;
+                        if (reps == 2) {
+                            cout << "Too many invalid attempts, returning to main menu." << endl;
+                            Sleep(3000);
+                            goto h;
+                        }
+                        valid = false; // Set valid flag to false if input is empty
+                        continue; // Prompt again for valid age
+                    }
+
+                    for (char c : input_age) { // Loop through each character in the input
+                        if (!isdigit(c)) { // Check if character is not a digit
+                            cout << "This doesn't seem a valid age, please enter an acceptable value!\n" << endl;
+                            if (reps == 2) {
+                                cout << "Too many invalid attempts, returning to main menu." << endl;
+                                Sleep(3000);
+                                goto h;
+                            }
+                            valid = false; // Set valid flag to false
+                            break; // Exit loop on invalid character
+                        }
+                    }
+
+                    if (valid) { // Proceed only if input is valid
+                        age = stoi(input_age); // Convert string to integer
+
+                        // Validate age range
+                        if (age < 0 || age > 120) { // Check for valid age range
+                            cout << "This doesn't seem a valid age, please enter an acceptable value!\n" << endl;
+                            if (reps == 2) {
+                                cout << "Too many invalid attempts, returning to main menu." << endl;
+                                Sleep(3000);
+                                goto h;
+                             // Terminate session
+                            }
+
+                        }
+
 
                         // Check if the age is less than 1 year (infant)
-                        if (age == 0) {
+                        else if (age == 0) {
                             int months;
                             cout << "How many months old is the infant? ";
-                            cin >> months;
-                            patients[unique_id - 1][2] = to_string(months) + " months"; // Store age in months
+                            string input_months;
+
+                            getline(cin, input_months); // Get months input
+
+                            if (input_months.empty()) { // Check if months input is empty
+                                cout << "This section can't be empty!" << endl;
+                                if (reps == 2) {
+                                    cout << "Too many invalid attempts, returning to main menu." << endl;
+                                    Sleep(3000);
+                                    goto h;
+                                    // go back to main menu
+                                }
+                                valid = false; // Set valid flag to false if input is empty
+                                continue; // Prompt again for valid months
+                            }
+
+                            valid = true; // Reset validity for months check
+                            for (char c : input_months) { // Loop through each character in months input
+                                if (!isdigit(c)) { // Check if character is not a digit
+                                    cout << "Please enter a valid month!" << endl;
+                                    if (reps == 2) {
+                                        cout << "Too many invalid attempts, returning to main menu." << endl;
+                                        Sleep(3000);
+                                        goto h;
+                                        // go back to main menu
+                                    }
+                                    valid = false; // Set valid flag to false
+                                    break; // Exit loop on invalid character
+                                }
+                            }
+
+                            if (valid) { // Proceed only if months input is valid
+                                months = stoi(input_months); // Convert string to integer
+
+                                // Validate months range
+                                if (months < 1 || months > 11) { // Check for valid months range
+                                    cout << "Please enter a valid month!" << endl;
+
+                                    if (reps == 2) {
+                                        cout << "Too many invalid attempts, returning to main menu." << endl;
+                                        Sleep(3000);
+                                        goto h;
+                                        // go back to main menu
+                                    }
+                                     // Ignore rest of line
+                                    continue; // Prompt again for valid month
+                                }
+
+                                // Set age to months for infants
+                                patients[unique_id - 1][2] = to_string(months) + " months"; // Store months in patients array
+                                break; // Exit the loop after valid input
+                            }
                         } else {
-                            patients[unique_id - 1][2] = to_string(age) + " years"; // Store age in years
+                            patients[unique_id - 1][2] = to_string(age) + " Years"; // Store age in patients array
+                            break; // Exit the loop for valid age input
                         }
+                    }
+
+
                     }
                     for(int reps = 0 ; reps < 3; reps++){
                         cout << "Enter Patient Gender (M, F): ";
-                        cin >> gender;
-                        patients[unique_id - 1][3] = toupper(gender) ; // Store patient gender
+                        string Gender;
+                        getline(cin, Gender); // Get gender input
+
+                        if (Gender.empty()) { // Check if gender input is empty
+                            cout << "This section can't be empty: " << endl;
+                            if (reps == 2) {
+                                cout << "Too many invalid attempts, returning to main menu." << endl;
+                                Sleep(3000);
+                                goto h;
+                                // go back to main menu
+                            }
+                            continue; // Prompt again for gender input
+                        } else if (!Gender.empty()) {
+                            gender = Gender[0]; // Get first character of gender input
+
+                            if (islower(gender)) { // Convert lowercase to uppercase
+                                gender = toupper(gender);
+                            }
+
+                            if (gender != 'M' && gender != 'F' || Gender.length() > 1) { // Validate gender input
+                                cout << "That is not a valid gender!" << endl;
+                                if (reps == 2) {
+                                    cout << "Too many invalid attempts, returning to main menu." << endl;
+                                    Sleep(3000);
+                                    goto h;
+                                    // go back to main menu
+                                }
+                                continue; // Prompt again for valid gender input
+                            }
+
+                            patients[unique_id - 1][3] = gender; // Store gender in patients array
+                            break; // Exit loop after valid input
+                        }
+
+
+                    // Store patient gender
 
                         cin.ignore(); // to consume the newline left by previous input
                     }
                     for(int reps = 0 ; reps < 3; reps++) {
                         cout << "Enter Patient Address: ";
-                        getline(cin, patients[unique_id - 1][4]); // Store patient address
+                        string address; // Store patient address
+                        getline(cin, address); // Get patient's address
+
+                        patients[unique_id - 1][4] = address; // Store address in patients array
+
+                        if (address.empty()) { // Check if address is empty
+                            cout << "This section can't be empty!" << endl;
+                            if (reps == 2) {
+                                cout << "Too many invalid attempts, returning to main menu." << endl;
+                                Sleep(3000);
+                                goto h;
+                                // go back to main menu
+                            }
+                            continue; // Prompt again for address input
+                        }
+                        else if( !isalpha (address[0] ) ) {
+                            cout<<"Please choose an address that exists."<<endl;
+                            if (reps == 2) {
+                                cout << "Too many invalid attempts, returning to main menu." << endl;
+                                Sleep(3000);
+                                goto h;
+                                // go back to main menu
+                            }
+                            continue;
+                        }
+                        else {
+                            break; // Exit loop after valid input
+                        }
                     }
                         // Initialize appointments to "0" indicating no appointment yet
                         for (int i = 0; i < max_appoinments; i++) {
@@ -97,7 +300,9 @@ int main(){ //start here
                         cout << "Patient added with ID: " << unique_id << endl;
                         unique_id++;  // Increment to the next unique ID
                         break;
-                 }
+
+                }
+
             case 2: {
                 // Add an appointment for an existing patient
                 b: for(int reps = 0 ; reps < 3; reps++) {
@@ -124,9 +329,12 @@ int main(){ //start here
                         }
                     }
                     if (valid) {
+
+
+
                         // Validate patient ID to ensure it exists
                         patient_id = stoi(input_patient_id);
-                        if (patient_id < 1 || patient_id > 1) {
+                        if (patient_id < 1 || patient_id > unique_id-1) {
                             cout << "Invalid Patient ID. Please try again.\n";
                             if (reps == 2) {
                                 // go back to home page after too many invalid attempts
@@ -134,10 +342,10 @@ int main(){ //start here
                                 Sleep(3000); // Sleep for 3 seconds
                                 goto h;
                             }
+
+
                         }
-                        else {
-                            break;
-                        }
+                        break;
                     }
                 }
 
@@ -308,6 +516,8 @@ int main(){ //start here
                             } // Store treatment info
                         }
 
+
+
                         // Appointment successfully added
                         cout << "Appointment added successfully.\n";
                         appointment_added = true;
@@ -326,7 +536,6 @@ int main(){ //start here
                 break;
             }
 
-          
             case 3:{
             // reschduling appointment
                 // identifying the type of patient
@@ -357,7 +566,7 @@ int main(){ //start here
                     if (valid) {
                         // Validate patient ID to ensure it exists
                         patient_id = stoi(input_patient_id);
-                        if (patient_id < 1 || patient_id > 1) {
+                        if (patient_id < 1 || patient_id > unique_id-1) {
                             cout << "Invalid Patient ID. Please try again.\n";
                             if (reps == 2) {
                                 // go back to home page after too many invalid attempts
@@ -367,16 +576,14 @@ int main(){ //start here
                             }
 
                         }
-                        else {
-                            break;
-                        }
+                        break;
                     }
                 }
 
                 bool id_found=false;
                 //identifying patient from others by looking for it's ID
                 for(int i=0;i<max_patient;i++){
-                     cout<<patients[i][0];
+
                     //cout << "Comparing " << to_string(patient_id) << " with " << patients[i][0] << endl;
                     if (to_string(patient_id)==patients[i][0]){
                         //cout<<patients[i][0];
@@ -394,8 +601,7 @@ int main(){ //start here
                         string day;
                         string original_day = day;
                         getline (cin, day);
-                        cin.clear();
-                        cin.ignore();
+
                         // Read the input date
                         bool valid = true;
 
@@ -480,7 +686,7 @@ int main(){ //start here
                     // checking if the new time doesn't overlap with ither schedules
 
                     bool appointment_set = false;
-                    for(int reps = 0 ; reps < 3; reps++) {
+                    n:for(int reps = 0 ; reps < 3; reps++) {
                         cout << "Enter your new appointment date (DD/MM/YYYY): ";
                         string new_day;
                         getline(cin, new_day); // Read the input date
@@ -611,11 +817,10 @@ int main(){ //start here
                             for (int i = 0; i < max_patient; i++) {
                                 for (int j = 0; j < max_appoinments; j++) {
                                     if (new_day == appointments[i][j][0] && new_time == appointments[i][j][1]) {
-                                        cout << "Sorry, the date or time has been reserved, select a new date and time\n";
-                                        cin.clear();
-                                        cin.ignore(); // Clear input buffer
+                                        cout << "Sorry, the date or time has been reserved, select a new date and time.\n";
+
                                         appointment_set = false;
-                                        break;
+                                        goto n;
                                     }
                                     else if (appointments[i][j][0] == "0") { // Assuming "0" indicates an available slot
                                         cout << "Appointment set to: " << new_day << " at " << new_time << endl;
@@ -624,6 +829,7 @@ int main(){ //start here
                                         appointment_set = true;
                                         break;
                                     }
+                                    break;
                                 }
                                 if (appointment_set) {
                                     break;
@@ -631,19 +837,25 @@ int main(){ //start here
                             }
 
 
-                            if (!appointment_set) {
-                                cout << "Going to home page within 3 seconds" << endl;
-                                cout << "Failed to set appointment. Please try again.\n";
-                            }
+
+                                 if (!appointment_set) {
+                                    cout << "Going to home page within 3 seconds" << endl;
+                                    cout << "Failed to set appointment. Please try again.\n";
+
+                                }
                             break;
-                        }
+                            }
+
+
                     }
                     }
                 }
                 else {
                 cout<<"ID not found, please register to continue";
                 Sleep(3000); // Sleep for 3 seconds
-                goto a;
+                cin.ignore();
+                    goto a;
+
                 }
                 break;
             }
@@ -688,6 +900,7 @@ int main(){ //start here
                                     Sleep(3000); // Sleep for 3 seconds
                                     goto h;
                                 }
+                                continue;
 
                             }
                        break; }
@@ -758,7 +971,6 @@ int main(){ //start here
                 int current_day = localTime->tm_mday;
                 int current_month = localTime->tm_mon + 1; // month starts from - to 11
                 int current_year = localTime->tm_year + 1900; // year since 1900
-                cout << "Current Date: " << current_day << "/" << current_month << "/" << current_year << endl;
                 for(int j = 0; j < unique_id - 1; j++) {// to calulate missed appointments
                     for (int i = 0; i < max_appoinments; i++) {
                         if (appointments[j][i][0] != "0") {
@@ -805,18 +1017,6 @@ int main(){ //start here
                     }
                 } // end of for loop for unique_id for patients
                     cout << "Total number of unique treatments: " << number_of_treatment << endl;
-                  cout << "\n*** Displaying All Registered statstical Data ***\n\n\n";
-
-                   cout
-                         << setw(5) << "Males"
-                         << setw(15) << "Females"
-                         << setw(30) << "number_of_treatment" << endl;
-
-                   cout
-                         << setw(2) << number_of_males
-                         << setw(14) << number_of_females
-                         << setw(24) <<number_of_treatment << endl;
-
                 cout << "List of unique treatments: ";
                 bool empty = true;
                 for (int i = 0; i < number_of_treatment; i++) {
@@ -829,17 +1029,17 @@ int main(){ //start here
                     cout << "No treatments found.\n";
                     // Wait for 3 seconds before going back to the home page
                     cout << "Returning to the home page in 3 seconds...\n";
-                    sleep(3000); // Sleep for 3 seconds
+                    Sleep(3000); // Sleep for 3 seconds
                     goto h;
 
                 }
                 break;
             }
-
-      case 7:{
-        //    Daily Report Generation
-        
-            // Initialize counters
+  
+             case 7:{
+           
+                 //  Daily Report Generation
+                // Initialize counters
             int total_appointments = 0;
             int total_patients_with_appointments = 0;
             int missed_appointments_for_the_day = 0;
@@ -854,14 +1054,14 @@ int main(){ //start here
             // Loop through all patients and appointments
             for (int j = 0; j < unique_id - 1; j++) { // Loop over all registered patients (unique_id keeps track of the number of patients)
                 bool has_appointments_today = false;  // To check if this patient has any appointments today
-        
+
                 for (int i = 0; i < max_appoinments; i++) {  // Loop through each patient's appointments
                     if (appointments[j][i][0] != "0") {  // If the patient has an appointment (non-"0" date)
                         total_appointments++;  // Increment total appointments
-        
+
                         // Check if the patient has appointments
                         has_appointments_today = true;
-        
+
                         // Track the treatments provided
                         string treatment = appointments[j][i][2];
                         if (treatment != "0") {
@@ -873,14 +1073,14 @@ int main(){ //start here
                                     break;
                                 }
                             }
-        
+
                             // If treatment is unique, add it to the list
                             if (is_unique) {
                                 treatment_types[number_of_treatments] = treatment;
                                 number_of_treatments++;
                             }
                         }
-        
+
                         // Check for missed appointments (assuming the date format is DD/MM/YYYY)
                         stringstream ss(appointments[j][i][0]);
                         int day, month, year;
@@ -892,37 +1092,39 @@ int main(){ //start here
                         }
                     }
                 }
-        
+
                 // Track the number of patients with at least one appointment
                 if (has_appointments_today) {
                     total_patients_with_appointments++;
                 }
             }
-        
+
             // Calculate the average number of appointments per patient
             double average_appointments_per_patient = 0;
             if (total_patients_with_appointments > 0) {
                 average_appointments_per_patient = (double)total_appointments / total_patients_with_appointments;
             }
-        
+
             // Display the daily report
             cout << "\n*** Daily Report ***\n";
             cout << "Total number of appointments for the day: " << total_appointments << endl;
             cout << "Total number of patients with appointments: " << total_patients_with_appointments << endl;
             cout << "Total number of missed appointments: " << missed_appointments_for_the_day << endl;
             cout << "Average number of appointments per patient: " << fixed << setprecision(2) << average_appointments_per_patient << endl;
-        
+
             cout << "\n*** Treatments Provided ***\n";
             for (int i = 0; i < number_of_treatments; i++) {
                 cout << treatment_types[i] << endl;  // Display all unique treatments
             }
-        
+
             // Wait for 3 seconds before returning to the main menu
             cout << "\nReturning to the main menu in 3 seconds...\n";
             Sleep(3000); // Sleep for 3 seconds
             break;
         }
-                case 8: {
+
+
+      case 8: {
                 // Exit the program
                 cout << "Exiting Healthcare Management System...\n";
                 Sleep(3000); // Sleep for 3 seconds
@@ -931,6 +1133,7 @@ int main(){ //start here
 
             default:
                 cout << "Invalid choice. Please try again.\n";
+
 
         }
     }
