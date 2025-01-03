@@ -61,7 +61,7 @@ int main() {
                         string name = patients[unique_id - 1][1] ; // Store name in patients array
 
                         bool valid = true; // Flag for name validation
-                        
+
                         for (char c : name ) {
                             if (!isalpha(c) && c != ' ') { // Check if the name contains only alphabets and spaces
                                 cout << "A name can only contain alphabets and space betwen your first and last name!" << endl;
@@ -333,7 +333,7 @@ int main() {
 
                         // Validate patient ID to ensure it exists
                         patient_id = stoi(input_patient_id);
-                        if (patient_id < 1 || patient_id > 1) {
+                        if (patient_id < 1 || patient_id > unique_id-1) {
                             cout << "Invalid Patient ID. Please try again.\n";
                             if (reps == 2) {
                                 // go back to home page after too many invalid attempts
@@ -344,9 +344,7 @@ int main() {
 
 
                         }
-                        else {
-                            break;
-                        }
+                        break;
                     }
                 }
 
@@ -567,7 +565,7 @@ int main() {
                     if (valid) {
                         // Validate patient ID to ensure it exists
                         patient_id = stoi(input_patient_id);
-                        if (patient_id < 1 || patient_id > 1) {
+                        if (patient_id < 1 || patient_id > unique_id-1) {
                             cout << "Invalid Patient ID. Please try again.\n";
                             if (reps == 2) {
                                 // go back to home page after too many invalid attempts
@@ -577,16 +575,14 @@ int main() {
                             }
 
                         }
-                        else {
-                            break;
-                        }
+                        break;
                     }
                 }
 
                 bool id_found=false;
                 //identifying patient from others by looking for it's ID
                 for(int i=0;i<max_patient;i++){
-                     cout<<patients[i][0];
+                    
                     //cout << "Comparing " << to_string(patient_id) << " with " << patients[i][0] << endl;
                     if (to_string(patient_id)==patients[i][0]){
                         //cout<<patients[i][0];
@@ -689,7 +685,7 @@ int main() {
                     // checking if the new time doesn't overlap with ither schedules
 
                     bool appointment_set = false;
-                    for(int reps = 0 ; reps < 3; reps++) {
+                    n:for(int reps = 0 ; reps < 3; reps++) {
                         cout << "Enter your new appointment date (DD/MM/YYYY): ";
                         string new_day;
                         getline(cin, new_day); // Read the input date
@@ -820,11 +816,10 @@ int main() {
                             for (int i = 0; i < max_patient; i++) {
                                 for (int j = 0; j < max_appoinments; j++) {
                                     if (new_day == appointments[i][j][0] && new_time == appointments[i][j][1]) {
-                                        cout << "Sorry, the date or time has been reserved, select a new date and time\n";
-                                        cin.clear();
-                                        cin.ignore(); // Clear input buffer
+                                        cout << "Sorry, the date or time has been reserved, select a new date and time.\n";
+
                                         appointment_set = false;
-                                        break;
+                                        goto n;
                                     }
                                     else if (appointments[i][j][0] == "0") { // Assuming "0" indicates an available slot
                                         cout << "Appointment set to: " << new_day << " at " << new_time << endl;
@@ -833,6 +828,7 @@ int main() {
                                         appointment_set = true;
                                         break;
                                     }
+                                    break;
                                 }
                                 if (appointment_set) {
                                     break;
@@ -840,12 +836,16 @@ int main() {
                             }
 
 
-                            if (!appointment_set) {
-                                cout << "Going to home page within 3 seconds" << endl;
-                                cout << "Failed to set appointment. Please try again.\n";
-                            }
+
+                                 if (!appointment_set) {
+                                    cout << "Going to home page within 3 seconds" << endl;
+                                    cout << "Failed to set appointment. Please try again.\n";
+
+                                }
                             break;
-                        }
+                            }
+
+
                     }
                     }
                 }
